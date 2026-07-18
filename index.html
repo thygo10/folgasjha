@@ -315,6 +315,13 @@
   .toolbar button.btn-bold:hover {
     background: #555;
   }
+  .toolbar button.btn-whatsapp {
+    background: #25d366;
+    color: #fff;
+  }
+  .toolbar button.btn-whatsapp:hover {
+    background: #1da851;
+  }
   .toolbar button.btn-reset {
     background: #c1272d;
   }
@@ -367,6 +374,7 @@
     }
   }
 </style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 </head>
 <body>
 
@@ -375,8 +383,10 @@
   <button class="btn-reset" onclick="resetData()">↺ Restaurar</button>
   <button onclick="changeFontSize(0.5)">🔤+ Fonte</button>
   <button onclick="changeFontSize(-0.5)">🔤- Fonte</button>
-  <button class="btn-bold" onclick="toggleBoldSelection()" title="Negrito no texto selecionado"><b>B</b> Seleção</button>
-  <button class="btn-bold" onclick="toggleBoldAll()" title="Negrito em todos os nomes"><b>B</b> Todos</button>
+  <button class="btn-bold" onclick="toggleBoldSelection()"><b>B</b> Seleção</button>
+  <button class="btn-bold" onclick="toggleBoldAll()"><b>B</b> Todos</button>
+  <button class="btn-whatsapp" onclick="gerarImagem()">📸 Gerar Imagem</button>
+  <button class="btn-whatsapp" onclick="gerarTextoWhatsApp()">💬 Texto WhatsApp</button>
   <span class="status" id="status">Clique em qualquer texto da folha para editar…</span>
 </div>
 
@@ -689,6 +699,113 @@ function adaptColumns() {
     // Só usa 2 colunas se tem 5 ou mais nomes reais
     ul.style.columnCount = realNames >= 5 ? '2' : '1';
   });
+}
+
+// ===== GERAR IMAGEM (html2canvas) =====
+async function gerarImagem() {
+  statusEl.textContent = 'Gerando imagem…';
+  try {
+    const page = document.getElementById('app');
+    const canvas = await html2canvas(page, {
+      scale: 2,
+      useCORS: true,
+      backgroundColor: '#ffffff',
+      width: page.scrollWidth,
+      height: page.scrollHeight
+    });
+    canvas.toBlob(async (blob) => {
+      // Tenta Web Share API (mobile / navegadores modernos)
+      if (navigator.share && navigator.canShare) {
+        const file = new File([blob], 'escala-de-folga.png', { type: 'image/png' });
+        const shareData = { files: [file], title: 'Escala de Folga', text: 'Escala de Folga - João Henrique Atacadista' };
+        if (navigator.canShare(shareData)) {
+          try {
+            await navigator.share(shareData);
+            statusEl.textContent = 'Imagem compartilhada ✓';
+            return;
+          } catch (e) { /* fallback para download */ }
+        }
+      }
+      // Fallback: download direto
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'escala-de-folga.png';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+      statusEl.textContent = 'Imagem baixada ✓ (envie pelo WhatsApp)';
+    }, 'image/png');
+  } catch (e) {
+    statusEl.textContent = 'Erro ao gerar imagem: ' + e.message;
+  }
+}
+
+// ===== TEXTO FORMATADO PARA WHATSAPP =====
+function gerarTextoWhatsApp() {
+  const sectionEmojis = ['🔵', '🟢', '🟡', '🔴', '🟠', '🟣', '🔷', '⚪'];
+  const sectionIcons = ['🛒', '📦', '🍳', '🥩', '🍞', '👤', '🚛', '🧹'];
+  const dayEmoji = '📅';
+
+  let txt = '';
+  txt += '╔══════════════════════╗\n';
+  txt += '  🏪 *JOÃO HENRIQUE ATACADISTA*\n';
+  txt += '  📋 *ESCALA DE FOLGA*\n';
+  txt += '╚══════════════════════╝\n\n';
+
+  const sections = document.querySelectorAll('.section');
+  sections.forEach((sec, i) => {
+    const titleEl = sec.querySelector('.sec-title');
+    const title = titleEl ? titleEl.textContent.trim().replace(/\s+/g, ' ') : 'SEÇÃO ' + (i+1);
+    const emoji = sectionEmojis[i] || '▪️';
+    const icon = sectionIcons[i] || '📌';
+
+    txt += `${emoji}${icon} *${title}*\n`;
+    txt += '━━━━━━━━━━━━━━━━━━━\n';
+
+    const cols = sec.querySelectorAll('.col');
+    cols.forEach(col => {
+      const headEl = col.querySelector('.col-head');
+      const day = headEl ? headEl.textContent.trim() : '';
+      const listEl = col.querySelector('.col-list');
+      const items = listEl ? listEl.querySelectorAll('li') : [];
+      const names = [];
+      items.forEach(li => {
+        const n = li.textContent.trim();
+        if (n && n !== '–' && n !== '-') names.push(n);
+      });
+      if (names.length > 0) {
+        txt += `${dayEmoji} *${day}:* ${names.join(', ')}\n`;
+      } else {
+        txt += `${dayEmoji} *${day}:* _sem folga_\n`;
+      }
+    });
+    txt += '\n';
+  });
+
+  txt += '━━━━━━━━━━━━━━━━━━━\n';
+  txt += '⭐ *Nossa equipe é o que nos faz mais fortes!*\n';
+  txt += '✅ *Organização hoje, resultados amanhã!*\n';
+  txt += '━━━━━━━━━━━━━━━━━━━\n';
+
+  // Copiar para clipboard
+  navigator.clipboard.writeText(txt).then(() => {
+    statusEl.textContent = 'Texto copiado! ✓ Cole no WhatsApp.';
+  }).catch(() => {
+    // Fallback: textarea
+    const ta = document.createElement('textarea');
+    ta.value = txt;
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand('copy');
+    document.body.removeChild(ta);
+    statusEl.textContent = 'Texto copiado! ✓ Cole no WhatsApp.';
+  });
+
+  // Abre WhatsApp Web com o texto (opcional)
+  const encoded = encodeURIComponent(txt);
+  window.open('https://wa.me/?text=' + encoded, '_blank');
 }
 
 loadData();
