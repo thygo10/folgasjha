@@ -33,9 +33,12 @@
     background: #fff;
     box-shadow: 0 0 12px rgba(0,0,0,0.25);
     overflow: hidden;
-    display: flex;
+    display: none;
     flex-direction: column;
     position: relative;
+  }
+  .page.active {
+    display: flex;
   }
 
   /* Cabeçalho bonito e equilibrado */
@@ -294,40 +297,64 @@
     box-shadow: 0 2px 6px rgba(0,0,0,0.1);
   }
   .toolbar button {
-    background: #0b2a52;
+    background: #061c37;
     color: #fff;
-    border: none;
+    border: 2px solid #061c37;
     padding: 7px 14px;
     border-radius: 6px;
     font-size: 12px;
     font-weight: bold;
     cursor: pointer;
-    transition: background 0.2s;
+    transition: all 0.2s;
   }
   .toolbar button:hover {
     background: #14427c;
+    border-color: #14427c;
   }
   .toolbar button.btn-bold {
-    background: #333;
+    background: #111;
+    border-color: #111;
     font-size: 14px;
-    padding: 7px 12px;
+    padding: 5px 12px;
   }
   .toolbar button.btn-bold:hover {
-    background: #555;
+    background: #444;
+    border-color: #444;
   }
   .toolbar button.btn-whatsapp {
-    background: #25d366;
+    background: #128c7e;
+    border-color: #128c7e;
     color: #fff;
   }
   .toolbar button.btn-whatsapp:hover {
-    background: #1da851;
+    background: #075e54;
+    border-color: #075e54;
   }
   .toolbar button.btn-reset {
-    background: #c1272d;
+    background: #901b20;
+    border-color: #901b20;
   }
   .toolbar button.btn-reset:hover {
-    background: #901b20;
+    background: #b0242a;
+    border-color: #b0242a;
   }
+  
+  /* Botões de abas (Tabs) com alto contraste */
+  .toolbar button.btn-tab {
+    background: #f1f3f5;
+    color: #212529;
+    border: 2px solid #adb5bd;
+  }
+  .toolbar button.btn-tab:hover {
+    background: #e2e6ea;
+    border-color: #868e96;
+  }
+  .toolbar button.btn-tab.active {
+    background: #0b2a52;
+    color: #fff;
+    border-color: #0b2a52;
+  }
+
   .status {
     font-size: 12px;
     color: #555;
@@ -355,6 +382,10 @@
       display: none !important;
     }
     .page {
+      display: none !important;
+    }
+    .page.active {
+      display: flex !important;
       width: 210mm !important;
       height: 297mm !important;
       max-height: 297mm !important;
@@ -379,6 +410,9 @@
 <body>
 
 <div class="toolbar">
+  <button class="btn-tab active" id="tab-semana" onclick="switchTab('semana')">📅 Semana (Terço a Sexta)</button>
+  <button class="btn-tab" id="tab-domingo" onclick="switchTab('domingo')">📅 Domingo (19/07)</button>
+  <span style="border-left: 2px solid #ccc; height: 20px; margin: 0 4px;"></span>
   <button onclick="window.print()">🖨️ Imprimir PDF</button>
   <button class="btn-reset" onclick="resetData()">↺ Restaurar</button>
   <button onclick="changeFontSize(0.5)">🔤+ Fonte</button>
@@ -390,7 +424,7 @@
   <span class="status" id="status">Clique em qualquer texto da folha para editar…</span>
 </div>
 
-<div class="page" id="app">
+<div class="page active" id="app">
 
   <div class="header">
     <div class="header-left">
@@ -562,6 +596,146 @@
     </div>
   </div>
 
+</div>
+
+<div class="page" id="app-domingo">
+  <div class="header">
+    <div class="header-left">
+      <div class="logo-icon">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M2 3h2l2.4 12.2a2 2 0 0 0 2 1.6h8.6a2 2 0 0 0 2-1.6L21 7H6" stroke="#0b2a52" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="9" cy="21" r="1.2" fill="#0b2a52"/><circle cx="18" cy="21" r="1.2" fill="#0b2a52"/></svg>
+      </div>
+      <div class="brand-text">
+        <div><span class="name1" contenteditable="true" data-key="dom-name1">JOÃO HENRIQUE</span></div>
+        <div><span class="name2" contenteditable="true" data-key="dom-name2">ATACADISTA</span></div>
+        <div class="slogan" contenteditable="true" data-key="dom-slogan">TRABALHO · RESPEITO · COMPROMISSO</div>
+      </div>
+    </div>
+    <div class="header-right">
+      <span class="title-text" contenteditable="true" data-key="dom-title">ESCALA DE DOMINGO</span>
+      <div class="calendar-icon">
+        <svg viewBox="0 0 24 24" fill="none"><rect x="3" y="4" width="18" height="17" rx="2" stroke="#fff" stroke-width="2"/><path d="M3 9h18M8 2v4M16 2v4" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg>
+      </div>
+    </div>
+  </div>
+
+  <div class="content">
+
+    <div class="section theme-blue">
+      <div class="sec-icon">
+        <svg viewBox="0 0 24 24" fill="none"><rect x="2" y="6" width="20" height="12" rx="2" stroke="#fff" stroke-width="1.6"/><circle cx="7" cy="18" r="1.4" fill="#fff"/><circle cx="17" cy="18" r="1.4" fill="#fff"/></svg>
+        <div class="sec-title" contenteditable="true" data-key="dom-s1-title">1. OPERADORES DE CAIXA</div>
+      </div>
+      <div class="sec-body">
+        <div class="col"><div class="col-head" contenteditable="true" data-key="dom-s1-h1">08:00 ÀS 16:00<br>(30 MIN INT)</div>
+          <ul class="col-list" contenteditable="true" data-key="dom-s1-l1"><li>Naylle</li><li>Ana Félix</li><li>Ana Paula</li><li>Alane</li><li>Sabrina</li></ul></div>
+        <div class="col"><div class="col-head" contenteditable="true" data-key="dom-s1-h2">10:00 ÀS 18:00<br>(30 MIN INT)</div>
+          <ul class="col-list" contenteditable="true" data-key="dom-s1-l2"><li>Viviane</li></ul></div>
+        <div class="col"><div class="col-head" contenteditable="true" data-key="dom-s1-h3">12:00 ÀS 20:00<br>(30 MIN INT)</div>
+          <ul class="col-list" contenteditable="true" data-key="dom-s1-l3"><li>Ana Luiza</li><li>Laisa</li><li>Kamilly</li><li>Luciana</li><li>John</li><li>Ana Claudia</li></ul></div>
+      </div>
+    </div>
+
+    <div class="section theme-green">
+      <div class="sec-icon">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M2 3h2l2.4 12.2a2 2 0 0 0 2 1.6h8.6a2 2 0 0 0 2-1.6L21 7H6" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><circle cx="9" cy="21" r="1.2" fill="#fff"/><circle cx="18" cy="21" r="1.2" fill="#fff"/></svg>
+        <div class="sec-title" contenteditable="true" data-key="dom-s2-title">2. REPOSITORES</div>
+      </div>
+      <div class="sec-body">
+        <div class="col"><div class="col-head" contenteditable="true" data-key="dom-s2-h1">09:00 ÀS 17:00<br>(30 MIN INT)</div>
+          <ul class="col-list" contenteditable="true" data-key="dom-s2-l1"><li>Roberto Jose</li><li>Danilo</li><li>Wellington</li></ul></div>
+        <div class="col"><div class="col-head" contenteditable="true" data-key="dom-s2-h2">12:00 ÀS 20:00<br>(30 MIN INT)</div>
+          <ul class="col-list" contenteditable="true" data-key="dom-s2-l2"><li>Daniel</li><li>Emerson</li></ul></div>
+      </div>
+    </div>
+
+    <div class="section theme-yellow">
+      <div class="sec-icon">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M6 3v6a4 4 0 0 0 8 0V3M10 9v12" stroke="#3a2a00" stroke-width="1.8" stroke-linecap="round"/><path d="M17 3s2 3 2 6-2 4-2 4v8" stroke="#3a2a00" stroke-width="1.8" stroke-linecap="round"/></svg>
+        <div class="sec-title" contenteditable="true" data-key="dom-s3-title">3. ASSISTENTE<br>DE LANCHONETE</div>
+      </div>
+      <div class="sec-body">
+        <div class="col"><div class="col-head" contenteditable="true" data-key="dom-s3-h1">08:00 ÀS 17:00<br>(1H30 ALMOÇO)</div>
+          <ul class="col-list" contenteditable="true" data-key="dom-s3-l1"><li>Eduarda</li><li>Nicole</li></ul></div>
+        <div class="col"><div class="col-head" contenteditable="true" data-key="dom-s3-h2">10:00 ÀS 18:00<br>(30 MIN INT)</div>
+          <ul class="col-list" contenteditable="true" data-key="dom-s3-l2"><li>Claudio</li></ul></div>
+        <div class="col"><div class="col-head" contenteditable="true" data-key="dom-s3-h3">12:00 ÀS 20:00<br>(1H30 ALMOÇO)</div>
+          <ul class="col-list" contenteditable="true" data-key="dom-s3-l3"><li>Valdenise</li><li>Ivonete</li></ul></div>
+      </div>
+    </div>
+
+    <div class="section theme-red">
+      <div class="sec-icon">
+        <svg viewBox="0 0 24 24" fill="none"><circle cx="9" cy="9" r="3" stroke="#fff" stroke-width="1.8"/><path d="M11 11l7 7-2 2-7-7" stroke="#fff" stroke-width="1.8" stroke-linecap="round"/></svg>
+        <div class="sec-title" contenteditable="true" data-key="dom-s4-title">4. AÇOUGUE</div>
+      </div>
+      <div class="sec-body">
+        <div class="col"><div class="col-head" contenteditable="true" data-key="dom-s4-h1">08:00 ÀS 16:00<br>(30 MIN INT)</div>
+          <ul class="col-list" contenteditable="true" data-key="dom-s4-l1"><li>Gabriel</li><li>Ana</li></ul></div>
+        <div class="col"><div class="col-head" contenteditable="true" data-key="dom-s4-h2">09:00 ÀS 18:00<br>(1H30 INT)</div>
+          <ul class="col-list" contenteditable="true" data-key="dom-s4-l2"><li>Erick</li><li>Rafael</li></ul></div>
+        <div class="col"><div class="col-head" contenteditable="true" data-key="dom-s4-h3">12:00 ÀS 20:00<br>(30 MIN INT)</div>
+          <ul class="col-list" contenteditable="true" data-key="dom-s4-l3"><li>Roberto</li><li>Marcelo</li></ul></div>
+      </div>
+    </div>
+
+    <div class="section theme-orange">
+      <div class="sec-icon">
+        <svg viewBox="0 0 24 24" fill="none"><ellipse cx="12" cy="14" rx="9" ry="6" stroke="#fff" stroke-width="1.8"/><path d="M6 12c1-3 3-6 6-6s5 3 6 6" stroke="#fff" stroke-width="1.8" stroke-linecap="round"/></svg>
+        <div class="sec-title" contenteditable="true" data-key="dom-s5-title">5. PADARIA<br>(PRODUÇÃO)</div>
+      </div>
+      <div class="sec-body">
+        <div class="col"><div class="col-head" contenteditable="true" data-key="dom-s5-h1">05:00 ÀS 10:00 / 12:00 ÀS 15:00</div>
+          <ul class="col-list" contenteditable="true" data-key="dom-s5-l1"><li>Ivandro</li><li>Raquel</li><li>Thais</li></ul></div>
+      </div>
+    </div>
+
+    <div class="section theme-purple">
+      <div class="sec-icon">
+        <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="3.5" stroke="#fff" stroke-width="1.8"/><path d="M5 21c0-4 3-7 7-7s7 3 7 7" stroke="#fff" stroke-width="1.8" stroke-linecap="round"/></svg>
+        <div class="sec-title" contenteditable="true" data-key="dom-s6-title">6. FISCAL<br>DE CAIXA</div>
+      </div>
+      <div class="sec-body">
+        <div class="col"><div class="col-head" contenteditable="true" data-key="dom-s6-h1">08:00 ÀS 17:00<br>(1H30 ALMOÇO)</div>
+          <ul class="col-list" contenteditable="true" data-key="dom-s6-l1"><li>Walta</li></ul></div>
+        <div class="col"><div class="col-head" contenteditable="true" data-key="dom-s6-h2">10:00 ÀS 20:00</div>
+          <ul class="col-list" contenteditable="true" data-key="dom-s6-l2"><li>Ualas</li></ul></div>
+      </div>
+    </div>
+
+    <div class="section theme-teal">
+      <div class="sec-icon">
+        <svg viewBox="0 0 24 24" fill="none"><rect x="2" y="10" width="8" height="7" rx="1" stroke="#fff" stroke-width="1.6"/><path d="M10 17V6h3v11M13 8h4l3 4v5h-3" stroke="#fff" stroke-width="1.6" stroke-linejoin="round"/><circle cx="6" cy="19" r="1.4" fill="#fff"/><circle cx="17" cy="19" r="1.4" fill="#fff"/></svg>
+        <div class="sec-title" contenteditable="true" data-key="dom-s7-title">7. EMPILHADOR</div>
+      </div>
+      <div class="sec-body">
+        <div class="col"><div class="col-head" contenteditable="true" data-key="dom-s7-h1">07:00 ÀS 15:00<br>(30 MIN INT)</div>
+          <ul class="col-list" contenteditable="true" data-key="dom-s7-l1"><li>Reginaldo</li></ul></div>
+      </div>
+    </div>
+
+    <div class="section theme-gray">
+      <div class="sec-icon">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M8 3l8 8M14 3l-9 9-2 6 6-2 9-9" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <div class="sec-title" contenteditable="true" data-key="dom-s8-title">8. LIMPEZA</div>
+      </div>
+      <div class="sec-body">
+        <div class="col"><div class="col-head" contenteditable="true" data-key="dom-s8-h1">08:00 ÀS 17:00<br>(1H30 ALMOÇO)</div>
+          <ul class="col-list" contenteditable="true" data-key="dom-s8-l1"><li>Eliomar</li></ul></div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer">
+    <div class="fitem">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M12 2l2.6 6.6L21 9l-5 4.4L17.4 21 12 17l-5.4 4L8 13.4 3 9l6.4-.4z" fill="#f7c600"/></svg>
+      <span contenteditable="true" data-key="dom-footer1">NOSSA EQUIPE É O QUE NOS FAZ MAIS FORTES</span>
+    </div>
+    <div class="fitem">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M8 12l3 3 5-6" stroke="#f7c600" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="12" r="9" stroke="#f7c600" stroke-width="2"/></svg>
+      <span contenteditable="true" data-key="dom-footer2">ORGANIZAÇÃO HOJE, RESULTADOS AMANHÃ</span>
+    </div>
+  </div>
 </div>
 
 <script>
@@ -815,6 +989,309 @@ function gerarTextoWhatsApp() {
   txt += '================================\n';
   txt += E_STAR + ' *Nossa equipe e o que nos faz mais fortes!*\n';
   txt += E_CHECK + ' *Organizacao hoje, resultados amanha!*\n';
+  txt += '================================\n';
+
+  // Copiar para clipboard
+  navigator.clipboard.writeText(txt).then(function() {
+    statusEl.textContent = 'Texto copiado! Cole no WhatsApp.';
+  }).catch(function() {
+    var ta = document.createElement('textarea');
+    ta.value = txt;
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand('copy');
+    document.body.removeChild(ta);
+    statusEl.textContent = 'Texto copiado! Cole no WhatsApp.';
+  });
+
+  // Abre WhatsApp Web com o texto
+  var encoded = encodeURIComponent(txt);
+  window.open('https://wa.me/?text=' + encoded, '_blank');
+}
+
+// Alternar entre abas
+function switchTab(tab) {
+  // Remove classes ativas
+  document.querySelectorAll('.btn-tab').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+
+  // Ativa a aba e página selecionadas
+  if (tab === 'semana') {
+    document.getElementById('tab-semana').classList.add('active');
+    document.getElementById('app').classList.add('active');
+  } else {
+    document.getElementById('tab-domingo').classList.add('active');
+    document.getElementById('app-domingo').classList.add('active');
+  }
+  
+  // Atualiza as seções e colunas da aba ativa
+  adaptSections();
+  statusEl.textContent = 'Visualizando escala de ' + (tab === 'semana' ? 'Semana' : 'Domingo') + '.';
+}
+
+function collectData() {
+  const data = {};
+  document.querySelectorAll('[data-key]').forEach(el => {
+    data[el.getAttribute('data-key')] = el.innerHTML;
+  });
+  return data;
+}
+
+function applyData(data) {
+  if (!data) return;
+  Object.keys(data).forEach(key => {
+    const el = document.querySelector('[data-key="' + key + '"]');
+    if (el) el.innerHTML = data[key];
+  });
+}
+
+function saveData() {
+  try {
+    const data = collectData();
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+    if (window.storage && window.storage.set) {
+      window.storage.set(STORAGE_KEY, JSON.stringify(data), true).catch(() => {});
+    }
+    statusEl.textContent = 'Salvo automaticamente ✓ (' + new Date().toLocaleTimeString('pt-BR') + ')';
+  } catch (e) {
+    statusEl.textContent = 'Alterações salvas temporariamente nesta sessão.';
+  }
+}
+
+async function loadData() {
+  try {
+    let saved = localStorage.getItem(STORAGE_KEY);
+    if (!saved && window.storage && window.storage.get) {
+      const res = await window.storage.get(STORAGE_KEY, true);
+      if (res && res.value) saved = res.value;
+    }
+    if (saved) {
+      applyData(JSON.parse(saved));
+      statusEl.textContent = 'Dados salvos carregados. Clique em qualquer texto para editar.';
+    } else {
+      statusEl.textContent = 'Clique em qualquer texto da folha para editar. Salva automaticamente.';
+    }
+  } catch (e) {
+    statusEl.textContent = 'Edição pronta.';
+  }
+}
+
+function resetData() {
+  if (confirm('Deseja restaurar a escala para o modelo padrão?')) {
+    localStorage.removeItem(STORAGE_KEY);
+    location.reload();
+  }
+}
+
+// Escuta input em ambas as páginas
+document.getElementById('app').addEventListener('input', () => {
+  statusEl.textContent = 'Editando…';
+  clearTimeout(saveTimer);
+  saveTimer = setTimeout(() => { saveData(); adaptSections(); }, 600);
+});
+document.getElementById('app-domingo').addEventListener('input', () => {
+  statusEl.textContent = 'Editando…';
+  clearTimeout(saveTimer);
+  saveTimer = setTimeout(() => { saveData(); adaptSections(); }, 600);
+});
+
+let currentFontSize = 8; // pt
+function changeFontSize(delta) {
+  currentFontSize = Math.max(5, Math.min(12, currentFontSize + delta));
+  document.querySelectorAll('.col-list').forEach(el => {
+    el.style.fontSize = currentFontSize + 'pt';
+  });
+  statusEl.textContent = 'Fonte das listas: ' + currentFontSize + 'pt';
+}
+
+// Negrito na seleção atual (funciona dentro de contenteditable)
+function toggleBoldSelection() {
+  document.execCommand('bold', false, null);
+  statusEl.textContent = 'Negrito aplicado na seleção ✓';
+  clearTimeout(saveTimer);
+  saveTimer = setTimeout(saveData, 600);
+}
+
+// Negrito em todos os nomes das listas
+let allBold = false;
+function toggleBoldAll() {
+  allBold = !allBold;
+  document.querySelectorAll('.col-list li').forEach(li => {
+    if (allBold) {
+      li.style.fontWeight = 'bold';
+    } else {
+      li.style.fontWeight = '';
+    }
+  });
+  statusEl.textContent = allBold ? 'Todos em negrito ✓' : 'Negrito removido de todos ✓';
+  clearTimeout(saveTimer);
+  saveTimer = setTimeout(saveData, 600);
+}
+
+// Adapta seções: se tem pouca gente (ou só "–"/"-"), encolhe a seção
+function adaptSections() {
+  document.querySelectorAll('.section').forEach(sec => {
+    const lists = sec.querySelectorAll('.col-list');
+    let maxInCol = 0;
+    lists.forEach(ul => {
+      let colCount = 0;
+      const items = ul.querySelectorAll('li');
+      items.forEach(li => {
+        const txt = li.textContent.trim();
+        if (txt && txt !== '–' && txt !== '-') colCount++;
+      });
+      if (colCount > maxInCol) maxInCol = colCount;
+    });
+    // Se a coluna com mais nomes tem 1 ou menos, compacta a seção
+    if (maxInCol <= 1) {
+      sec.classList.add('section-compact');
+    } else {
+      sec.classList.remove('section-compact');
+    }
+  });
+  // Adapta colunas individuais: 2 colunas só se tiver 5+ nomes
+  adaptColumns();
+}
+
+// Ajusta column-count de cada lista individualmente
+function adaptColumns() {
+  document.querySelectorAll('.col-list').forEach(ul => {
+    let realNames = 0;
+    const items = ul.querySelectorAll('li');
+    items.forEach(li => {
+      const txt = li.textContent.trim();
+      if (txt && txt !== '–' && txt !== '-') realNames++;
+    });
+    // Só usa 2 colunas se tem 5 ou mais nomes reais
+    ul.style.columnCount = realNames >= 5 ? '2' : '1';
+  });
+}
+
+// ===== GERAR IMAGEM (html2canvas) =====
+async function gerarImagem() {
+  statusEl.textContent = 'Gerando imagem (Altíssima Qualidade)…';
+  try {
+    const page = document.querySelector('.page.active');
+    const canvas = await html2canvas(page, {
+      scale: 6,
+      useCORS: true,
+      backgroundColor: '#ffffff',
+      width: page.scrollWidth,
+      height: page.scrollHeight
+    });
+    canvas.toBlob(async (blob) => {
+      // Tenta Web Share API (mobile / navegadores modernos)
+      if (navigator.share && navigator.canShare) {
+        const file = new File([blob], 'escala.png', { type: 'image/png' });
+        const shareData = { files: [file], title: 'Escala', text: 'Escala de Trabalho' };
+        if (navigator.canShare(shareData)) {
+          try {
+            await navigator.share(shareData);
+            statusEl.textContent = 'Imagem compartilhada ✓';
+            return;
+          } catch (e) { /* fallback para download */ }
+        }
+      }
+      // Fallback: download direto
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'escala.png';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+      statusEl.textContent = 'Imagem baixada ✓ (envie pelo WhatsApp)';
+    }, 'image/png');
+  } catch (e) {
+    statusEl.textContent = 'Erro ao gerar imagem: ' + e.message;
+  }
+}
+
+// ===== TEXTO FORMATADO PARA WHATSAPP (Aba Ativa) =====
+function gerarTextoWhatsApp() {
+  var E_LOJA = String.fromCodePoint(0x1F3EA);
+  var E_CLIP = String.fromCodePoint(0x1F4CB);
+  var E_STAR = String.fromCodePoint(0x2B50);
+  var E_CHECK = String.fromCodePoint(0x2705);
+  var E_CAL = String.fromCodePoint(0x1F4C5);
+  var icones = [
+    String.fromCodePoint(0x1F6D2), // carrinho
+    String.fromCodePoint(0x1F4E6), // caixa
+    String.fromCodePoint(0x1F373), // frigideira
+    String.fromCodePoint(0x1FA94), // faca
+    String.fromCodePoint(0x1F35E), // pao
+    String.fromCodePoint(0x1F464), // pessoa
+    String.fromCodePoint(0x1F69A), // caminhao
+    String.fromCodePoint(0x1F9F9), // vassoura
+  ];
+
+  // Pega a página ativa para extrair as informações corretas
+  var activePage = document.querySelector('.page.active');
+  var isDom = activePage.id === 'app-domingo';
+  
+  var prefixKey = isDom ? 'dom-' : '';
+  var name1 = activePage.querySelector('[data-key="' + prefixKey + 'name1"]');
+  var name2 = activePage.querySelector('[data-key="' + prefixKey + 'name2"]');
+  var tituloEl = activePage.querySelector('[data-key="' + prefixKey + 'title"]');
+  var empresa = (name1 ? name1.textContent.trim() : 'JOAO HENRIQUE') + ' ' + (name2 ? name2.textContent.trim() : 'ATACADISTA');
+  var titulo = tituloEl ? tituloEl.textContent.trim() : 'ESCALA';
+
+  var txt = '';
+  txt += '================================\n';
+  txt += '     ' + E_LOJA + ' *' + empresa + '*\n';
+  txt += '     ' + E_CLIP + ' *' + titulo + '*\n';
+  txt += '================================\n\n';
+
+  var sections = activePage.querySelectorAll('.section');
+  for (var i = 0; i < sections.length; i++) {
+    var sec = sections[i];
+    var titleEl = sec.querySelector('.sec-title');
+    var title = 'SECAO ' + (i+1);
+    if (titleEl) {
+      var clone = titleEl.cloneNode(true);
+      var brs = clone.querySelectorAll('br');
+      for (var b = 0; b < brs.length; b++) { brs[b].replaceWith(' '); }
+      title = clone.textContent.trim().replace(/\s+/g, ' ');
+    }
+    var ic = icones[i] || '>>';
+
+    txt += ic + ' *' + title + '*\n';
+    txt += '--------------------------------\n';
+
+    var cols = sec.querySelectorAll('.col');
+    for (var c = 0; c < cols.length; c++) {
+      var col = cols[c];
+      var headEl = col.querySelector('.col-head');
+      var day = headEl ? headEl.textContent.trim() : '';
+      var listEl = col.querySelector('.col-list');
+      var items = listEl ? listEl.querySelectorAll('li') : [];
+      var names = [];
+      for (var n = 0; n < items.length; n++) {
+        var nm = items[n].textContent.trim();
+        if (nm && nm !== '\u2013' && nm !== '-') names.push(nm);
+      }
+      
+      // Limpa quebras de linha do dia/horário para a mensagem do Whatsapp
+      var dayClean = day.replace(/\r?\n|\r/g, ' ').replace(/\s+/g, ' ');
+      
+      if (names.length > 0) {
+        txt += E_CAL + ' *' + dayClean + ':* ' + names.join(', ') + '\n';
+      } else {
+        txt += E_CAL + ' *' + dayClean + ':* _sem escala_\n';
+      }
+    }
+    txt += '\n';
+  }
+
+  var footer1 = activePage.querySelector('[data-key="' + prefixKey + 'footer1"]');
+  var footer2 = activePage.querySelector('[data-key="' + prefixKey + 'footer2"]');
+  var f1Text = footer1 ? footer1.textContent.trim() : 'NOSSA EQUIPE E O QUE NOS FAZ MAIS FORTES';
+  var f2Text = footer2 ? footer2.textContent.trim() : 'ORGANIZACAO HOJE, RESULTADOS AMANHA';
+
+  txt += '================================\n';
+  txt += E_STAR + ' *' + f1Text + '*\n';
+  txt += E_CHECK + ' *' + f2Text + '*\n';
   txt += '================================\n';
 
   // Copiar para clipboard
