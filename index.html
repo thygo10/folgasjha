@@ -23,12 +23,12 @@
     print-color-adjust: exact !important;
   }
   
-  /* Container visual no navegador (A4 exato: 210mm x 297mm) */
+  /* Container visual A4 (210mm x 297mm) */
   .page {
     width: 210mm;
     height: 297mm;
     max-height: 297mm;
-    margin: 0 auto;
+    margin: 6mm auto;
     background: #fff;
     box-shadow: 0 0 12px rgba(0,0,0,0.25);
     overflow: hidden;
@@ -37,11 +37,11 @@
     position: relative;
   }
 
-  /* Cabeçalho colado no topo e compacto */
+  /* Cabeçalho bonito e equilibrado */
   .header {
     position: relative;
     display: flex;
-    height: 19mm;
+    height: 25mm;
     background: #0b2a52 !important;
     overflow: hidden;
     flex-shrink: 0;
@@ -49,8 +49,8 @@
   .header-left {
     display: flex;
     align-items: center;
-    gap: 3mm;
-    padding: 0 5mm;
+    gap: 4mm;
+    padding: 0 6mm;
     width: 52%;
     min-width: 0;
     background: #0b2a52 !important;
@@ -64,52 +64,52 @@
     align-items: center;
     justify-content: center;
     position: relative;
-    padding-left: 6mm;
-    padding-right: 12mm;
+    padding-left: 8mm;
+    padding-right: 14mm;
   }
   .logo-icon {
-    width: 9.5mm;
-    height: 9.5mm;
+    width: 12mm;
+    height: 12mm;
     background: #f7c600 !important;
-    border-radius: 2mm;
+    border-radius: 2.5mm;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
   }
   .logo-icon svg {
-    width: 5.5mm;
-    height: 5.5mm;
+    width: 7mm;
+    height: 7mm;
   }
   .brand-text {
     color: #fff;
-    line-height: 1.1;
+    line-height: 1.15;
     min-width: 0;
     flex: 1;
   }
   .brand-text .name1 {
-    font-size: 10pt;
+    font-size: 11.5pt;
     font-weight: 800;
-    letter-spacing: 0.2px;
+    letter-spacing: 0.3px;
     white-space: nowrap;
   }
   .brand-text .name2 {
-    font-size: 10pt;
+    font-size: 11.5pt;
     font-weight: 800;
     color: #f7c600;
-    letter-spacing: 0.2px;
+    letter-spacing: 0.3px;
     white-space: nowrap;
   }
   .brand-text .slogan {
-    font-size: 4.8pt;
-    letter-spacing: 0.8px;
-    margin-top: 0.5mm;
+    font-size: 5.5pt;
+    letter-spacing: 1px;
+    margin-top: 1mm;
     font-weight: 600;
     white-space: nowrap;
     opacity: 0.95;
   }
   .title-text {
-    font-size: 14pt;
+    font-size: 17pt;
     font-weight: 900;
     color: #0b2a52;
     letter-spacing: 0.5px;
@@ -117,26 +117,26 @@
   }
   .calendar-icon {
     position: absolute;
-    right: 4mm;
+    right: 5mm;
     top: 50%;
     transform: translateY(-50%);
-    width: 8mm;
-    height: 8mm;
+    width: 10mm;
+    height: 10mm;
     background: #0b2a52 !important;
-    border-radius: 2mm;
+    border-radius: 2.5mm;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
   }
   .calendar-icon svg {
-    width: 4.5mm;
-    height: 4.5mm;
+    width: 5.5mm;
+    height: 5.5mm;
   }
 
-  /* Conteúdo colado no topo com gaps otimizados */
+  /* Conteúdo distribuído exatamente na folha */
   .content {
-    padding: 1.5mm 4mm 1.5mm 4mm;
+    padding: 2.5mm 5mm;
     flex: 1;
     display: flex;
     flex-direction: column;
@@ -145,18 +145,18 @@
   }
   .section {
     display: flex;
-    border: 1px solid #ccc;
-    border-radius: 2mm;
+    border: 1.2px solid #ccc;
+    border-radius: 2.5mm;
     overflow: hidden;
     flex: 1;
-    max-height: 27.5mm;
-    margin-bottom: 1mm;
+    max-height: 30mm;
+    margin-bottom: 1.2mm;
   }
   .section:last-child {
     margin-bottom: 0;
   }
   .sec-icon {
-    width: 25mm;
+    width: 28mm;
     flex-shrink: 0;
     display: flex;
     flex-direction: column;
@@ -164,17 +164,17 @@
     justify-content: center;
     text-align: center;
     color: #fff;
-    padding: 1mm;
-    gap: 0.5mm;
+    padding: 1.5mm;
+    gap: 1mm;
   }
   .sec-icon svg {
-    width: 6mm;
-    height: 6mm;
+    width: 7.5mm;
+    height: 7.5mm;
   }
   .sec-icon .sec-title {
-    font-size: 7pt;
+    font-size: 7.5pt;
     font-weight: 800;
-    line-height: 1.05;
+    line-height: 1.1;
     color: #fff;
   }
   .theme-yellow .sec-icon .sec-title {
@@ -196,26 +196,26 @@
   }
   .col-head {
     color: #fff;
-    font-size: 7pt;
+    font-size: 7.5pt;
     font-weight: 800;
     text-align: center;
-    padding: 0.6mm 0;
-    letter-spacing: 0.4px;
+    padding: 0.8mm 0;
+    letter-spacing: 0.5px;
     flex-shrink: 0;
   }
   .col-list {
     list-style: none;
     margin: 0;
-    padding: 1mm 2mm;
-    font-size: 7pt;
-    line-height: 1.15;
+    padding: 1.2mm 2.5mm;
+    font-size: 7.5pt;
+    line-height: 1.2;
     flex: 1;
     min-height: 0;
     color: #111;
     overflow: hidden;
   }
   .col-list li {
-    padding-left: 2mm;
+    padding-left: 2.5mm;
     position: relative;
     white-space: nowrap;
     text-overflow: ellipsis;
@@ -238,7 +238,7 @@
     border-radius: 2px;
   }
 
-  /* Preservação total de cores no papel / PDF */
+  /* Cores com suporte total a Impressão */
   .theme-blue   .sec-icon{ background:#0b2a52 !important; } .theme-blue   .col-head{ background:#0b2a52 !important; color:#fff !important; }
   .theme-green  .sec-icon{ background:#1e8a3c !important; } .theme-green  .col-head{ background:#1e8a3c !important; color:#fff !important; }
   .theme-yellow .sec-icon{ background:#f2b600 !important; } .theme-yellow .col-head{ background:#f2b600 !important; color:#3a2a00 !important; }
@@ -255,11 +255,11 @@
     display: flex;
     align-items: center;
     justify-content: space-around;
-    padding: 1.5mm 4mm;
-    font-size: 6pt;
+    padding: 2mm 5mm;
+    font-size: 6.5pt;
     font-weight: 700;
     text-align: center;
-    gap: 3mm;
+    gap: 4mm;
     flex-shrink: 0;
   }
   .footer .fitem {
@@ -270,15 +270,15 @@
     justify-content: center;
   }
   .footer svg {
-    width: 4mm;
-    height: 4mm;
+    width: 4.5mm;
+    height: 4.5mm;
     flex-shrink: 0;
   }
 
   /* Toolbar superior no navegador */
   .toolbar {
     max-width: 210mm;
-    margin: 8px auto 6px;
+    margin: 8px auto 0;
     text-align: center;
     font-family: Arial, sans-serif;
     display: flex;
@@ -287,7 +287,7 @@
     gap: 12px;
     flex-wrap: wrap;
     background: #fff;
-    padding: 8px 16px;
+    padding: 10px 16px;
     border-radius: 8px;
     box-shadow: 0 2px 6px rgba(0,0,0,0.1);
   }
@@ -295,7 +295,7 @@
     background: #0b2a52;
     color: #fff;
     border: none;
-    padding: 7px 16px;
+    padding: 8px 18px;
     border-radius: 6px;
     font-size: 13px;
     font-weight: bold;
@@ -317,7 +317,7 @@
     font-weight: 500;
   }
 
-  /* ESTILOS DE IMPRESSÃO RIGOROSOS PARA 1 FOLHA A4 SEM SOBRA */
+  /* ESTILOS DE IMPRESSÃO RIGOROSOS PARA 1 FOLHA A4 */
   @media print {
     @page {
       size: A4 portrait;
