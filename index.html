@@ -410,7 +410,7 @@
 <body>
 
 <div class="toolbar">
-  <button class="btn-tab active" id="tab-semana" onclick="switchTab('semana')">📅 Semana (Terço a Sexta)</button>
+  <button class="btn-tab active" id="tab-semana" onclick="switchTab('semana')">📅 Semana (Terça a Sexta)</button>
   <button class="btn-tab" id="tab-domingo" onclick="switchTab('domingo')">📅 Domingo (19/07)</button>
   <span style="border-left: 2px solid #ccc; height: 20px; margin: 0 4px;"></span>
   <button onclick="window.print()">🖨️ Imprimir PDF</button>
@@ -1295,6 +1295,15 @@ function gerarTextoWhatsApp() {
   var encoded = encodeURIComponent(txt);
   window.open('https://wa.me/?text=' + encoded, '_blank');
 }
+
+// Vincula funções ao escopo global (window) de forma explícita para compatibilidade
+window.switchTab = switchTab;
+window.changeFontSize = changeFontSize;
+window.toggleBoldSelection = toggleBoldSelection;
+window.toggleBoldAll = toggleBoldAll;
+window.gerarImagem = gerarImagem;
+window.gerarTextoWhatsApp = gerarTextoWhatsApp;
+window.resetData = resetData;
 
 loadData();
 setTimeout(adaptSections, 100);
