@@ -153,9 +153,15 @@
     border: 1.2px solid #ccc;
     border-radius: 2.5mm;
     overflow: hidden;
-    flex: 1;
-    max-height: 30mm;
+    flex: 1 1 auto;
+    max-height: 38mm;
+    min-height: 10mm;
     margin-bottom: 0;
+  }
+  .section.section-compact {
+    flex: 0 0 auto;
+    max-height: none;
+    min-height: 0;
   }
   .section:last-child {
     margin-bottom: 0;
@@ -615,7 +621,7 @@ function resetData() {
 document.getElementById('app').addEventListener('input', () => {
   statusEl.textContent = 'Editando…';
   clearTimeout(saveTimer);
-  saveTimer = setTimeout(saveData, 600);
+  saveTimer = setTimeout(() => { saveData(); adaptSections(); }, 600);
 });
 
 let currentFontSize = 6.5; // pt
@@ -627,7 +633,30 @@ function changeFontSize(delta) {
   statusEl.textContent = 'Fonte das listas: ' + currentFontSize + 'pt';
 }
 
+// Adapta seções: se tem pouca gente (ou só "–"), encolhe a seção
+function adaptSections() {
+  document.querySelectorAll('.section').forEach(sec => {
+    const lists = sec.querySelectorAll('.col-list');
+    let totalReal = 0;
+    lists.forEach(ul => {
+      const items = ul.querySelectorAll('li');
+      items.forEach(li => {
+        const txt = li.textContent.trim();
+        if (txt && txt !== '–' && txt !== '-') totalReal++;
+      });
+    });
+    // Se tem 4 nomes reais ou menos no total, compacta
+    if (totalReal <= 4) {
+      sec.classList.add('section-compact');
+    } else {
+      sec.classList.remove('section-compact');
+    }
+  });
+}
+
 loadData();
+// Roda adaptação após carregar dados
+setTimeout(adaptSections, 100);
 </script>
 
 </body>
