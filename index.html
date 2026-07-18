@@ -744,25 +744,44 @@ async function gerarImagem() {
 
 // ===== TEXTO FORMATADO PARA WHATSAPP =====
 function gerarTextoWhatsApp() {
-  const sectionEmojis = ['🔵', '🟢', '🟡', '🔴', '🟠', '🟣', '🔷', '⚪'];
-  const sectionIcons = ['🛒', '📦', '🍳', '🥩', '🍞', '👤', '🚛', '🧹'];
-  const dayEmoji = '📅';
+  const sectionLabels = [
+    { e: '\u25A0', i: '\uD83D\uDED2' },  // ■ + carrinho
+    { e: '\u25A0', i: '\uD83D\uDCE6' },  // ■ + caixa
+    { e: '\u25A0', i: '\uD83C\uDF73' },  // ■ + frigideira
+    { e: '\u25A0', i: '\uD83E\uDD69' },  // ■ + carne
+    { e: '\u25A0', i: '\uD83C\uDF5E' },  // ■ + pao
+    { e: '\u25A0', i: '\uD83D\uDC64' },  // ■ + pessoa
+    { e: '\u25A0', i: '\uD83D\uDE9A' },  // ■ + caminhao
+    { e: '\u25A0', i: '\uD83E\uDDF9' },  // ■ + vassoura
+  ];
+
+  // Pega o nome da empresa e titulo do header
+  const name1 = document.querySelector('[data-key="name1"]');
+  const name2 = document.querySelector('[data-key="name2"]');
+  const titleEl = document.querySelector('[data-key="title"]');
+  const empresa = (name1 ? name1.textContent.trim() : 'JOAO HENRIQUE') + ' ' + (name2 ? name2.textContent.trim() : 'ATACADISTA');
+  const titulo = titleEl ? titleEl.textContent.trim() : 'ESCALA DE FOLGA';
 
   let txt = '';
-  txt += '╔══════════════════════╗\n';
-  txt += '  🏪 *JOÃO HENRIQUE ATACADISTA*\n';
-  txt += '  📋 *ESCALA DE FOLGA*\n';
-  txt += '╚══════════════════════╝\n\n';
+  txt += '================================\n';
+  txt += '     *' + empresa + '*\n';
+  txt += '     *' + titulo + '*\n';
+  txt += '================================\n\n';
 
   const sections = document.querySelectorAll('.section');
   sections.forEach((sec, i) => {
     const titleEl = sec.querySelector('.sec-title');
-    const title = titleEl ? titleEl.textContent.trim().replace(/\s+/g, ' ') : 'SEÇÃO ' + (i+1);
-    const emoji = sectionEmojis[i] || '▪️';
-    const icon = sectionIcons[i] || '📌';
+    // Tratar <br> como espa\u00E7o para n\u00E3o juntar palavras
+    let title = 'SECAO ' + (i+1);
+    if (titleEl) {
+      const clone = titleEl.cloneNode(true);
+      clone.querySelectorAll('br').forEach(br => br.replaceWith(' '));
+      title = clone.textContent.trim().replace(/\s+/g, ' ');
+    }
+    const label = sectionLabels[i] || { e: '-', i: '' };
 
-    txt += `${emoji}${icon} *${title}*\n`;
-    txt += '━━━━━━━━━━━━━━━━━━━\n';
+    txt += label.i + ' *' + title + '*\n';
+    txt += '--------------------------------\n';
 
     const cols = sec.querySelectorAll('.col');
     cols.forEach(col => {
@@ -773,37 +792,36 @@ function gerarTextoWhatsApp() {
       const names = [];
       items.forEach(li => {
         const n = li.textContent.trim();
-        if (n && n !== '–' && n !== '-') names.push(n);
+        if (n && n !== '\u2013' && n !== '-') names.push(n);
       });
       if (names.length > 0) {
-        txt += `${dayEmoji} *${day}:* ${names.join(', ')}\n`;
+        txt += '  *' + day + ':* ' + names.join(', ') + '\n';
       } else {
-        txt += `${dayEmoji} *${day}:* _sem folga_\n`;
+        txt += '  *' + day + ':* _sem folga_\n';
       }
     });
     txt += '\n';
   });
 
-  txt += '━━━━━━━━━━━━━━━━━━━\n';
-  txt += '⭐ *Nossa equipe é o que nos faz mais fortes!*\n';
-  txt += '✅ *Organização hoje, resultados amanhã!*\n';
-  txt += '━━━━━━━━━━━━━━━━━━━\n';
+  txt += '================================\n';
+  txt += '* Nossa equipe e o que nos faz mais fortes!*\n';
+  txt += '* Organizacao hoje, resultados amanha!*\n';
+  txt += '================================\n';
 
   // Copiar para clipboard
   navigator.clipboard.writeText(txt).then(() => {
-    statusEl.textContent = 'Texto copiado! ✓ Cole no WhatsApp.';
+    statusEl.textContent = 'Texto copiado! Cole no WhatsApp.';
   }).catch(() => {
-    // Fallback: textarea
     const ta = document.createElement('textarea');
     ta.value = txt;
     document.body.appendChild(ta);
     ta.select();
     document.execCommand('copy');
     document.body.removeChild(ta);
-    statusEl.textContent = 'Texto copiado! ✓ Cole no WhatsApp.';
+    statusEl.textContent = 'Texto copiado! Cole no WhatsApp.';
   });
 
-  // Abre WhatsApp Web com o texto (opcional)
+  // Abre WhatsApp Web com o texto
   const encoded = encodeURIComponent(txt);
   window.open('https://wa.me/?text=' + encoded, '_blank');
 }
