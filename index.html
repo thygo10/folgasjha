@@ -216,7 +216,7 @@
     min-height: 0;
     color: #222;
     overflow: hidden;
-    columns: 2;
+    column-count: 1;
     column-gap: 2mm;
     column-fill: auto;
   }
@@ -665,12 +665,28 @@ function adaptSections() {
       });
       if (colCount > maxInCol) maxInCol = colCount;
     });
-    // Se a coluna com mais nomes tem 1 ou menos, compacta
+    // Se a coluna com mais nomes tem 1 ou menos, compacta a seção
     if (maxInCol <= 1) {
       sec.classList.add('section-compact');
     } else {
       sec.classList.remove('section-compact');
     }
+  });
+  // Adapta colunas individuais: 2 colunas só se tiver 5+ nomes
+  adaptColumns();
+}
+
+// Ajusta column-count de cada lista individualmente
+function adaptColumns() {
+  document.querySelectorAll('.col-list').forEach(ul => {
+    let realNames = 0;
+    const items = ul.querySelectorAll('li');
+    items.forEach(li => {
+      const txt = li.textContent.trim();
+      if (txt && txt !== '–' && txt !== '-') realNames++;
+    });
+    // Só usa 2 colunas se tem 5 ou mais nomes reais
+    ul.style.columnCount = realNames >= 5 ? '2' : '1';
   });
 }
 
