@@ -29,8 +29,7 @@
     height: 297mm;
     max-height: 297mm;
     margin: 0 auto;
-    margin-top: 0;
-    padding-top: 0;
+    padding: 0;
     background: #fff;
     box-shadow: 0 0 12px rgba(0,0,0,0.25);
     overflow: hidden;
@@ -47,8 +46,8 @@
     background: #0b2a52 !important;
     overflow: hidden;
     flex-shrink: 0;
-    margin-top: 0;
-    padding-top: 0;
+    margin: 0;
+    padding: 0;
   }
   .header-left {
     display: flex;
@@ -140,31 +139,24 @@
 
   /* Conteúdo distribuído exatamente na folha */
   .content {
-    padding: 1.5mm 5mm;
+    padding: 2mm 4mm;
     flex: 1;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
-    gap: 0.6mm;
+    gap: 1.5mm;
     min-height: 0;
+    overflow: hidden;
   }
   .section {
     display: flex;
     border: 1.2px solid #ccc;
     border-radius: 2.5mm;
     overflow: hidden;
-    flex: 1 1 auto;
-    max-height: 38mm;
-    min-height: 10mm;
-    margin-bottom: 0;
+    flex: 1 1 0;
+    min-height: 0;
   }
   .section.section-compact {
     flex: 0 0 auto;
-    max-height: none;
-    min-height: 0;
-  }
-  .section:last-child {
-    margin-bottom: 0;
   }
   .sec-icon {
     width: 28mm;
@@ -207,40 +199,28 @@
   }
   .col-head {
     color: #fff;
-    font-size: 7.5pt;
+    font-size: 7pt;
     font-weight: 800;
     text-align: center;
-    padding: 0.8mm 0;
+    padding: 0.6mm 0;
     letter-spacing: 0.5px;
     flex-shrink: 0;
   }
   .col-list {
     list-style: none;
     margin: 0;
-    padding: 0.8mm 1.5mm;
-    font-size: 6.5pt;
-    line-height: 1.15;
+    padding: 1mm 2mm;
+    font-size: 7pt;
+    line-height: 1.35;
     flex: 1;
     min-height: 0;
-    color: #111;
+    color: #222;
     overflow: hidden;
-    display: flex;
-    flex-wrap: wrap;
-    align-content: flex-start;
-    gap: 0 2mm;
   }
   .col-list li {
-    padding-left: 2mm;
-    position: relative;
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
-    flex-shrink: 0;
-  }
-  .col-list li::before {
-    content: "•";
-    position: absolute;
-    left: 0;
   }
 
   /* Edição em tempo real intuitiva */
@@ -294,7 +274,7 @@
   /* Toolbar superior no navegador */
   .toolbar {
     max-width: 210mm;
-    margin: 8px auto 0;
+    margin: 4px auto 2px;
     text-align: center;
     font-family: Arial, sans-serif;
     display: flex;
@@ -359,7 +339,6 @@
       max-height: 297mm !important;
       margin: 0 !important;
       padding: 0 !important;
-      padding-top: 0 !important;
       box-shadow: none !important;
       border: none !important;
       overflow: hidden !important;
@@ -624,29 +603,31 @@ document.getElementById('app').addEventListener('input', () => {
   saveTimer = setTimeout(() => { saveData(); adaptSections(); }, 600);
 });
 
-let currentFontSize = 6.5; // pt
+let currentFontSize = 7; // pt
 function changeFontSize(delta) {
-  currentFontSize = Math.max(4, Math.min(12, currentFontSize + delta));
+  currentFontSize = Math.max(5, Math.min(12, currentFontSize + delta));
   document.querySelectorAll('.col-list').forEach(el => {
     el.style.fontSize = currentFontSize + 'pt';
   });
   statusEl.textContent = 'Fonte das listas: ' + currentFontSize + 'pt';
 }
 
-// Adapta seções: se tem pouca gente (ou só "–"), encolhe a seção
+// Adapta seções: se tem pouca gente (ou só "–"/"-"), encolhe a seção
 function adaptSections() {
   document.querySelectorAll('.section').forEach(sec => {
     const lists = sec.querySelectorAll('.col-list');
-    let totalReal = 0;
+    let maxInCol = 0;
     lists.forEach(ul => {
+      let colCount = 0;
       const items = ul.querySelectorAll('li');
       items.forEach(li => {
         const txt = li.textContent.trim();
-        if (txt && txt !== '–' && txt !== '-') totalReal++;
+        if (txt && txt !== '–' && txt !== '-') colCount++;
       });
+      if (colCount > maxInCol) maxInCol = colCount;
     });
-    // Se tem 4 nomes reais ou menos no total, compacta
-    if (totalReal <= 4) {
+    // Se a coluna com mais nomes tem 1 ou menos, compacta
+    if (maxInCol <= 1) {
       sec.classList.add('section-compact');
     } else {
       sec.classList.remove('section-compact');
