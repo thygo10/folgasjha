@@ -707,7 +707,7 @@ async function gerarImagem() {
   try {
     const page = document.getElementById('app');
     const canvas = await html2canvas(page, {
-      scale: 2,
+      scale: 4,
       useCORS: true,
       backgroundColor: '#ffffff',
       width: page.scrollWidth,
