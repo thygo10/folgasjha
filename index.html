@@ -1083,7 +1083,6 @@ function resetData() {
   }
 }
 
-// Escuta input em ambas as páginas
 document.getElementById('app').addEventListener('input', () => {
   statusEl.textContent = 'Editando…';
   clearTimeout(saveTimer);
@@ -1095,7 +1094,7 @@ document.getElementById('app-domingo').addEventListener('input', () => {
   saveTimer = setTimeout(() => { saveData(); adaptSections(); }, 600);
 });
 
-let currentFontSize = 8; // pt
+let currentFontSize = 8;
 function changeFontSize(delta) {
   currentFontSize = Math.max(5, Math.min(12, currentFontSize + delta));
   document.querySelectorAll('.col-list').forEach(el => {
@@ -1104,7 +1103,6 @@ function changeFontSize(delta) {
   statusEl.textContent = 'Fonte das listas: ' + currentFontSize + 'pt';
 }
 
-// Negrito na seleção atual (funciona dentro de contenteditable)
 function toggleBoldSelection() {
   document.execCommand('bold', false, null);
   statusEl.textContent = 'Negrito aplicado na seleção ✓';
@@ -1112,7 +1110,6 @@ function toggleBoldSelection() {
   saveTimer = setTimeout(saveData, 600);
 }
 
-// Negrito em todos os nomes das listas
 let allBold = false;
 function toggleBoldAll() {
   allBold = !allBold;
@@ -1128,7 +1125,6 @@ function toggleBoldAll() {
   saveTimer = setTimeout(saveData, 600);
 }
 
-// Adapta seções: se tem pouca gente (ou só "–"/"-"), encolhe a seção
 function adaptSections() {
   document.querySelectorAll('.section').forEach(sec => {
     const lists = sec.querySelectorAll('.col-list');
@@ -1142,18 +1138,15 @@ function adaptSections() {
       });
       if (colCount > maxInCol) maxInCol = colCount;
     });
-    // Se a coluna com mais nomes tem 1 ou menos, compacta a seção
     if (maxInCol <= 1) {
       sec.classList.add('section-compact');
     } else {
       sec.classList.remove('section-compact');
     }
   });
-  // Adapta colunas individuais: 2 colunas só se tiver 5+ nomes
   adaptColumns();
 }
 
-// Ajusta column-count de cada lista individualmente
 function adaptColumns() {
   document.querySelectorAll('.col-list').forEach(ul => {
     let realNames = 0;
@@ -1162,12 +1155,10 @@ function adaptColumns() {
       const txt = li.textContent.trim();
       if (txt && txt !== '–' && txt !== '-') realNames++;
     });
-    // Só usa 2 colunas se tem 5 ou mais nomes reais
     ul.style.columnCount = realNames >= 5 ? '2' : '1';
   });
 }
 
-// ===== GERAR IMAGEM (html2canvas) =====
 async function gerarImagem() {
   statusEl.textContent = 'Gerando imagem (Altíssima Qualidade)…';
   try {
@@ -1180,7 +1171,6 @@ async function gerarImagem() {
       height: page.scrollHeight
     });
     canvas.toBlob(async (blob) => {
-      // Tenta Web Share API (mobile / navegadores modernos)
       if (navigator.share && navigator.canShare) {
         const file = new File([blob], 'escala.png', { type: 'image/png' });
         const shareData = { files: [file], title: 'Escala', text: 'Escala de Trabalho' };
@@ -1189,10 +1179,9 @@ async function gerarImagem() {
             await navigator.share(shareData);
             statusEl.textContent = 'Imagem compartilhada ✓';
             return;
-          } catch (e) { /* fallback para download */ }
+          } catch (e) { }
         }
       }
-      // Fallback: download direto
       const url = URL.createObjectURL(blob);
       const a = document.createElement('a');
       a.href = url;
@@ -1208,7 +1197,6 @@ async function gerarImagem() {
   }
 }
 
-// ===== TEXTO FORMATADO PARA WHATSAPP (Aba Ativa) =====
 function gerarTextoWhatsApp() {
   var E_LOJA = String.fromCodePoint(0x1F3EA);
   var E_CLIP = String.fromCodePoint(0x1F4CB);
@@ -1216,17 +1204,16 @@ function gerarTextoWhatsApp() {
   var E_CHECK = String.fromCodePoint(0x2705);
   var E_CAL = String.fromCodePoint(0x1F4C5);
   var icones = [
-    String.fromCodePoint(0x1F6D2), // carrinho
-    String.fromCodePoint(0x1F4E6), // caixa
-    String.fromCodePoint(0x1F373), // frigideira
-    String.fromCodePoint(0x1FA94), // faca
-    String.fromCodePoint(0x1F35E), // pao
-    String.fromCodePoint(0x1F464), // pessoa
-    String.fromCodePoint(0x1F69A), // caminhao
-    String.fromCodePoint(0x1F9F9), // vassoura
+    String.fromCodePoint(0x1F6D2), 
+    String.fromCodePoint(0x1F4E6), 
+    String.fromCodePoint(0x1F373), 
+    String.fromCodePoint(0x1FA94), 
+    String.fromCodePoint(0x1F35E), 
+    String.fromCodePoint(0x1F464), 
+    String.fromCodePoint(0x1F69A), 
+    String.fromCodePoint(0x1F9F9),
   ];
 
-  // Pega a página ativa para extrair as informações corretas
   var activePage = document.querySelector('.page.active');
   var isDom = activePage.id === 'app-domingo';
   
@@ -1272,7 +1259,6 @@ function gerarTextoWhatsApp() {
         if (nm && nm !== '\u2013' && nm !== '-') names.push(nm);
       }
       
-      // Limpa quebras de linha do dia/horário para a mensagem do Whatsapp
       var dayClean = day.replace(/\r?\n|\r/g, ' ').replace(/\s+/g, ' ');
       
       if (names.length > 0) {
@@ -1287,14 +1273,13 @@ function gerarTextoWhatsApp() {
   var footer1 = activePage.querySelector('[data-key="' + prefixKey + 'footer1"]');
   var footer2 = activePage.querySelector('[data-key="' + prefixKey + 'footer2"]');
   var f1Text = footer1 ? footer1.textContent.trim() : 'NOSSA EQUIPE E O QUE NOS FAZ MAIS FORTES';
-  var f2Text = footer2 ? footer2.textContent.trim() : 'ORGANIZACAO HOJE, RESULTADOS AMANHA';
+  var f2Text = footer2 ? footer2.textContent.trim() : 'ORGANIZACAO HOJE, RESULTADOS AMANHÃ';
 
   txt += '================================\n';
   txt += E_STAR + ' *' + f1Text + '*\n';
   txt += E_CHECK + ' *' + f2Text + '*\n';
   txt += '================================\n';
 
-  // Copiar para clipboard
   navigator.clipboard.writeText(txt).then(function() {
     statusEl.textContent = 'Texto copiado! Cole no WhatsApp.';
   }).catch(function() {
@@ -1307,13 +1292,11 @@ function gerarTextoWhatsApp() {
     statusEl.textContent = 'Texto copiado! Cole no WhatsApp.';
   });
 
-  // Abre WhatsApp Web com o texto
   var encoded = encodeURIComponent(txt);
   window.open('https://wa.me/?text=' + encoded, '_blank');
 }
 
 loadData();
-// Roda adaptação após carregar dados
 setTimeout(adaptSections, 100);
 </script>
 
