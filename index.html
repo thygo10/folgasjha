@@ -4,68 +4,367 @@
 <meta charset="UTF-8">
 <title>Escala de Folga - João Henrique Atacadista</title>
 <style>
-  @page { size: A4; margin: 0; }
-  * { box-sizing: border-box; }
-  body { margin: 0; font-family: Arial, Helvetica, sans-serif; background: #e9edf1; }
-  .page {
-    width: 210mm; min-height: 297mm; margin: 10mm auto;
-    background: #fff; box-shadow: 0 0 12px rgba(0,0,0,0.25);
-    overflow: hidden; display: flex; flex-direction: column;
+  @page {
+    size: A4 portrait;
+    margin: 0;
   }
-  .header { position: relative; display: flex; height: 32mm; background: #0b2a52; overflow: hidden; }
-  .header-left { display: flex; align-items: center; gap: 5mm; padding: 0 7mm; width: 52%; min-width: 0; background: #0b2a52; z-index: 2; }
-  .header-right { flex: 1; background: #f7c600; clip-path: polygon(10% 0, 100% 0, 100% 100%, 0% 100%); display: flex; align-items: center; justify-content: center; position: relative; padding-left: 10mm; padding-right: 16mm; }
-  .logo-icon { width: 15mm; height: 15mm; background: #f7c600; border-radius: 3.5mm; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-  .logo-icon svg { width: 8mm; height: 8mm; }
-  .brand-text { color: #fff; line-height: 1.2; min-width: 0; flex: 1; }
-  .brand-text .name1 { font-size: 13pt; font-weight: 800; letter-spacing: 0.3px; white-space: nowrap; }
-  .brand-text .name2 { font-size: 13pt; font-weight: 800; color: #f7c600; letter-spacing: 0.3px; white-space: nowrap; }
-  .brand-text .slogan { font-size: 6pt; letter-spacing: 1.2px; margin-top: 1.5mm; font-weight: 600; white-space: nowrap; }
-  .title-text { font-size: 20pt; font-weight: 900; color: #0b2a52; letter-spacing: 0.5px; text-align: center; }
-  .calendar-icon { position: absolute; right: 6mm; top: 50%; transform: translateY(-50%); width: 12mm; height: 12mm; background: #0b2a52; border-radius: 3mm; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-  .calendar-icon svg { width: 6.5mm; height: 6.5mm; }
+  * {
+    box-sizing: border-box;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    color-adjust: exact !important;
+  }
+  html, body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background: #e9edf1;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+  
+  /* Container visual no navegador (A4 exato: 210mm x 297mm) */
+  .page {
+    width: 210mm;
+    height: 297mm;
+    max-height: 297mm;
+    margin: 6mm auto;
+    background: #fff;
+    box-shadow: 0 0 12px rgba(0,0,0,0.25);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+  }
 
-  .content { padding: 5mm 6mm; flex: 1; }
-  .section { display: flex; border: 1.2px solid #ccc; border-radius: 3mm; margin-bottom: 3.5mm; overflow: hidden; }
-  .sec-icon { width: 30mm; flex-shrink: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; color: #fff; padding: 2mm; gap: 1.5mm; }
-  .sec-icon svg { width: 9mm; height: 9mm; }
-  .sec-icon .sec-title { font-size: 9pt; font-weight: 800; line-height: 1.15; color: #fff; }
-  .theme-yellow .sec-icon .sec-title { color: #3a2a00; }
-  .sec-body { flex: 1; display: flex; }
-  .col { flex: 1; border-left: 1px solid #e2e2e2; display: flex; flex-direction: column; }
-  .col:first-child { border-left: none; }
-  .col-head { color: #fff; font-size: 8pt; font-weight: 800; text-align: center; padding: 1.5mm 0; letter-spacing: 0.5px; }
-  .col-list { list-style: none; margin: 0; padding: 2mm 3mm; font-size: 8pt; line-height: 1.55; flex: 1; min-height: 10mm; color:#111; }
-  .col-list li { padding-left: 3mm; position: relative; }
-  .col-list li::before { content: "•"; position: absolute; left: 0; }
-  [contenteditable]:focus { outline: 1.5px dashed #888; background: #fffde7; }
+  /* Cabeçalho compacto */
+  .header {
+    position: relative;
+    display: flex;
+    height: 25mm;
+    background: #0b2a52 !important;
+    overflow: hidden;
+    flex-shrink: 0;
+  }
+  .header-left {
+    display: flex;
+    align-items: center;
+    gap: 4mm;
+    padding: 0 6mm;
+    width: 52%;
+    min-width: 0;
+    background: #0b2a52 !important;
+    z-index: 2;
+  }
+  .header-right {
+    flex: 1;
+    background: #f7c600 !important;
+    clip-path: polygon(8% 0, 100% 0, 100% 100%, 0% 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    padding-left: 8mm;
+    padding-right: 14mm;
+  }
+  .logo-icon {
+    width: 12mm;
+    height: 12mm;
+    background: #f7c600 !important;
+    border-radius: 2.5mm;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .logo-icon svg {
+    width: 7mm;
+    height: 7mm;
+  }
+  .brand-text {
+    color: #fff;
+    line-height: 1.15;
+    min-width: 0;
+    flex: 1;
+  }
+  .brand-text .name1 {
+    font-size: 11.5pt;
+    font-weight: 800;
+    letter-spacing: 0.3px;
+    white-space: nowrap;
+  }
+  .brand-text .name2 {
+    font-size: 11.5pt;
+    font-weight: 800;
+    color: #f7c600;
+    letter-spacing: 0.3px;
+    white-space: nowrap;
+  }
+  .brand-text .slogan {
+    font-size: 5.5pt;
+    letter-spacing: 1px;
+    margin-top: 1mm;
+    font-weight: 600;
+    white-space: nowrap;
+    opacity: 0.95;
+  }
+  .title-text {
+    font-size: 17pt;
+    font-weight: 900;
+    color: #0b2a52;
+    letter-spacing: 0.5px;
+    text-align: center;
+  }
+  .calendar-icon {
+    position: absolute;
+    right: 5mm;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 10mm;
+    height: 10mm;
+    background: #0b2a52 !important;
+    border-radius: 2.5mm;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .calendar-icon svg {
+    width: 5.5mm;
+    height: 5.5mm;
+  }
 
-  .theme-blue   .sec-icon{background:#0b2a52;} .theme-blue .col-head{background:#0b2a52;}
-  .theme-green  .sec-icon{background:#1e8a3c;} .theme-green .col-head{background:#1e8a3c;}
-  .theme-yellow .sec-icon{background:#f2b600;} .theme-yellow .col-head{background:#f2b600; color:#3a2a00;}
-  .theme-red    .sec-icon{background:#c1272d;} .theme-red .col-head{background:#c1272d;}
-  .theme-orange .sec-icon{background:#e8641c;} .theme-orange .col-head{background:#e8641c;}
-  .theme-purple .sec-icon{background:#3d1a78;} .theme-purple .col-head{background:#3d1a78;}
-  .theme-teal   .sec-icon{background:#0e7c8a;} .theme-teal .col-head{background:#0e7c8a;}
-  .theme-gray   .sec-icon{background:#5a5a5a;} .theme-gray .col-head{background:#5a5a5a;}
+  /* Conteúdo perfeitamente dimensionado para caber 8 seções em 1 A4 */
+  .content {
+    padding: 2.5mm 5mm;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 0;
+  }
+  .section {
+    display: flex;
+    border: 1.2px solid #ccc;
+    border-radius: 2.5mm;
+    overflow: hidden;
+    flex: 1;
+    max-height: 32mm;
+    margin-bottom: 1.5mm;
+  }
+  .section:last-child {
+    margin-bottom: 0;
+  }
+  .sec-icon {
+    width: 28mm;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #fff;
+    padding: 1.5mm;
+    gap: 1mm;
+  }
+  .sec-icon svg {
+    width: 7.5mm;
+    height: 7.5mm;
+  }
+  .sec-icon .sec-title {
+    font-size: 7.5pt;
+    font-weight: 800;
+    line-height: 1.1;
+    color: #fff;
+  }
+  .theme-yellow .sec-icon .sec-title {
+    color: #3a2a00;
+  }
+  .sec-body {
+    flex: 1;
+    display: flex;
+  }
+  .col {
+    flex: 1;
+    border-left: 1px solid #e2e2e2;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+  }
+  .col:first-child {
+    border-left: none;
+  }
+  .col-head {
+    color: #fff;
+    font-size: 7.5pt;
+    font-weight: 800;
+    text-align: center;
+    padding: 1mm 0;
+    letter-spacing: 0.5px;
+    flex-shrink: 0;
+  }
+  .col-list {
+    list-style: none;
+    margin: 0;
+    padding: 1.5mm 2.5mm;
+    font-size: 7.5pt;
+    line-height: 1.2;
+    flex: 1;
+    min-height: 0;
+    color: #111;
+    overflow: hidden;
+  }
+  .col-list li {
+    padding-left: 2.5mm;
+    position: relative;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+  .col-list li::before {
+    content: "•";
+    position: absolute;
+    left: 0;
+  }
 
-  .footer { background: #0b2a52; color: #f7c600; display: flex; align-items: center; justify-content: space-around; padding: 3mm 6mm; font-size: 7pt; font-weight: 700; text-align: center; gap: 4mm; }
-  .footer .fitem { display:flex; align-items:center; gap:2mm; flex:1; justify-content:center;}
-  .footer svg { width: 6mm; height: 6mm; flex-shrink:0; }
+  /* Edição em tempo real intuitiva */
+  [contenteditable] {
+    cursor: text;
+    transition: background 0.15s;
+  }
+  [contenteditable]:focus {
+    outline: 1.5px dashed #0b2a52;
+    background: #fffde7;
+    border-radius: 2px;
+  }
 
-  .toolbar { max-width: 210mm; margin: 4mm auto 0; text-align: center; font-family: sans-serif; display:flex; align-items:center; justify-content:center; gap:10px; flex-wrap:wrap; }
-  .toolbar button { background:#0b2a52; color:#fff; border:none; padding:8px 18px; border-radius:6px; font-size:13px; cursor:pointer; }
-  .status { font-size: 12px; color:#555; }
-  @media print { .toolbar { display:none; } body { background:#fff; } .page { margin:0; box-shadow:none; } }
+  /* Preservação total de cores no papel / PDF */
+  .theme-blue   .sec-icon{ background:#0b2a52 !important; } .theme-blue   .col-head{ background:#0b2a52 !important; color:#fff !important; }
+  .theme-green  .sec-icon{ background:#1e8a3c !important; } .theme-green  .col-head{ background:#1e8a3c !important; color:#fff !important; }
+  .theme-yellow .sec-icon{ background:#f2b600 !important; } .theme-yellow .col-head{ background:#f2b600 !important; color:#3a2a00 !important; }
+  .theme-red    .sec-icon{ background:#c1272d !important; } .theme-red    .col-head{ background:#c1272d !important; color:#fff !important; }
+  .theme-orange .sec-icon{ background:#e8641c !important; } .theme-orange .col-head{ background:#e8641c !important; color:#fff !important; }
+  .theme-purple .sec-icon{ background:#3d1a78 !important; } .theme-purple .col-head{ background:#3d1a78 !important; color:#fff !important; }
+  .theme-teal   .sec-icon{ background:#0e7c8a !important; } .theme-teal   .col-head{ background:#0e7c8a !important; color:#fff !important; }
+  .theme-gray   .sec-icon{ background:#5a5a5a !important; } .theme-gray   .col-head{ background:#5a5a5a !important; color:#fff !important; }
+
+  /* Rodapé compacto */
+  .footer {
+    background: #0b2a52 !important;
+    color: #f7c600 !important;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: 2mm 5mm;
+    font-size: 6.5pt;
+    font-weight: 700;
+    text-align: center;
+    gap: 4mm;
+    flex-shrink: 0;
+  }
+  .footer .fitem {
+    display: flex;
+    align-items: center;
+    gap: 2mm;
+    flex: 1;
+    justify-content: center;
+  }
+  .footer svg {
+    width: 4.5mm;
+    height: 4.5mm;
+    flex-shrink: 0;
+  }
+
+  /* Toolbar superior no navegador */
+  .toolbar {
+    max-width: 210mm;
+    margin: 8px auto 0;
+    text-align: center;
+    font-family: Arial, sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    background: #fff;
+    padding: 10px 16px;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  }
+  .toolbar button {
+    background: #0b2a52;
+    color: #fff;
+    border: none;
+    padding: 8px 18px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  .toolbar button:hover {
+    background: #14427c;
+  }
+  .toolbar button.btn-reset {
+    background: #c1272d;
+  }
+  .toolbar button.btn-reset:hover {
+    background: #901b20;
+  }
+  .status {
+    font-size: 12px;
+    color: #555;
+    font-weight: 500;
+  }
+
+  /* ESTILOS DE IMPRESSÃO RIGOROSOS PARA 1 FOLHA A4 COM CORES ATIVAS */
+  @media print {
+    @page {
+      size: A4 portrait;
+      margin: 0mm !important;
+    }
+    html, body {
+      width: 210mm !important;
+      height: 297mm !important;
+      margin: 0 !important;
+      padding: 0 !important;
+      overflow: hidden !important;
+      background: #fff !important;
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
+      color-adjust: exact !important;
+    }
+    .toolbar {
+      display: none !important;
+    }
+    .page {
+      width: 210mm !important;
+      height: 297mm !important;
+      max-height: 297mm !important;
+      margin: 0 !important;
+      padding: 0 !important;
+      box-shadow: none !important;
+      border: none !important;
+      overflow: hidden !important;
+      page-break-after: avoid !important;
+      page-break-inside: avoid !important;
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
+    }
+    [contenteditable]:focus {
+      outline: none !important;
+      background: transparent !important;
+    }
+  }
 </style>
 </head>
 <body>
 
 <div class="toolbar">
-  <button onclick="window.print()">🖨️ Imprimir / Salvar PDF 1</button>
-  <span class="status" id="status">Carregando dados compartilhados…</span>
+  <button onclick="window.print()">🖨️ Imprimir / Salvar PDF (1 Folha A4)</button>
+  <button class="btn-reset" onclick="resetData()">↺ Restaurar Padrão</button>
+  <span class="status" id="status">Clique em qualquer texto da folha para editar…</span>
 </div>
-
 
 <div class="page" id="app">
 
@@ -242,7 +541,7 @@
 </div>
 
 <script>
-const STORAGE_KEY = 'escala-folga-data-v1';
+const STORAGE_KEY = 'escala-folga-jha-v2';
 const statusEl = document.getElementById('status');
 let saveTimer = null;
 
@@ -262,34 +561,48 @@ function applyData(data) {
   });
 }
 
-async function loadData() {
+function saveData() {
   try {
-    const result = await window.storage.get(STORAGE_KEY, true);
-    if (result && result.value) {
-      applyData(JSON.parse(result.value));
-      statusEl.textContent = 'Dados compartilhados carregados. Edite à vontade — salva automaticamente.';
-    } else {
-      statusEl.textContent = 'Nenhum dado salvo ainda — editando a versão padrão. Toda edição fica salva e visível para quem tiver o link.';
+    const data = collectData();
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+    if (window.storage && window.storage.set) {
+      window.storage.set(STORAGE_KEY, JSON.stringify(data), true).catch(() => {});
     }
+    statusEl.textContent = 'Salvo automaticamente ✓ (' + new Date().toLocaleTimeString('pt-BR') + ')';
   } catch (e) {
-    statusEl.textContent = 'Editando localmente (armazenamento compartilhado indisponível nesta pré-visualização — publique o artifact para ativar).';
+    statusEl.textContent = 'Alterações salvas temporariamente nesta sessão.';
   }
 }
 
-async function saveData() {
+async function loadData() {
   try {
-    const data = collectData();
-    await window.storage.set(STORAGE_KEY, JSON.stringify(data), true);
-    statusEl.textContent = 'Salvo ✓ (' + new Date().toLocaleTimeString('pt-BR') + ')';
+    let saved = localStorage.getItem(STORAGE_KEY);
+    if (!saved && window.storage && window.storage.get) {
+      const res = await window.storage.get(STORAGE_KEY, true);
+      if (res && res.value) saved = res.value;
+    }
+    if (saved) {
+      applyData(JSON.parse(saved));
+      statusEl.textContent = 'Dados salvos carregados. Clique em qualquer texto para editar.';
+    } else {
+      statusEl.textContent = 'Clique em qualquer texto da folha para editar. Salva automaticamente.';
+    }
   } catch (e) {
-    statusEl.textContent = 'Não foi possível salvar (publique o artifact para ativar o armazenamento compartilhado).';
+    statusEl.textContent = 'Edição pronta.';
+  }
+}
+
+function resetData() {
+  if (confirm('Deseja restaurar a escala para o modelo padrão?')) {
+    localStorage.removeItem(STORAGE_KEY);
+    location.reload();
   }
 }
 
 document.getElementById('app').addEventListener('input', () => {
   statusEl.textContent = 'Editando…';
   clearTimeout(saveTimer);
-  saveTimer = setTimeout(saveData, 800);
+  saveTimer = setTimeout(saveData, 600);
 });
 
 loadData();
