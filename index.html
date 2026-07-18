@@ -216,11 +216,15 @@
     min-height: 0;
     color: #222;
     overflow: hidden;
+    columns: 2;
+    column-gap: 2mm;
+    column-fill: auto;
   }
   .col-list li {
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
+    break-inside: avoid;
   }
 
   /* Edição em tempo real intuitiva */
@@ -280,10 +284,10 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 12px;
+    gap: 8px;
     flex-wrap: wrap;
     background: #fff;
-    padding: 10px 16px;
+    padding: 8px 14px;
     border-radius: 8px;
     box-shadow: 0 2px 6px rgba(0,0,0,0.1);
   }
@@ -291,15 +295,24 @@
     background: #0b2a52;
     color: #fff;
     border: none;
-    padding: 8px 18px;
+    padding: 7px 14px;
     border-radius: 6px;
-    font-size: 13px;
+    font-size: 12px;
     font-weight: bold;
     cursor: pointer;
     transition: background 0.2s;
   }
   .toolbar button:hover {
     background: #14427c;
+  }
+  .toolbar button.btn-bold {
+    background: #333;
+    font-size: 14px;
+    padding: 7px 12px;
+    font-style: italic;
+  }
+  .toolbar button.btn-bold:hover {
+    background: #555;
   }
   .toolbar button.btn-reset {
     background: #c1272d;
@@ -357,10 +370,12 @@
 <body>
 
 <div class="toolbar">
-  <button onclick="window.print()">🖨️ Imprimir / Salvar PDF (1 Folha A4)</button>
-  <button class="btn-reset" onclick="resetData()">↺ Restaurar Padrão</button>
-  <button onclick="changeFontSize(0.5)" title="Aumentar fonte das listas">🔤+ Fonte</button>
-  <button onclick="changeFontSize(-0.5)" title="Diminuir fonte das listas">🔤- Fonte</button>
+  <button onclick="window.print()">🖨️ Imprimir PDF</button>
+  <button class="btn-reset" onclick="resetData()">↺ Restaurar</button>
+  <button onclick="changeFontSize(0.5)">🔤+ Fonte</button>
+  <button onclick="changeFontSize(-0.5)">🔤- Fonte</button>
+  <button class="btn-bold" onclick="toggleBoldSelection()" title="Negrito no texto selecionado"><b>B</b> Seleção</button>
+  <button class="btn-bold" onclick="toggleBoldAll()" title="Negrito em todos os nomes"><b>B</b> Todos</button>
   <span class="status" id="status">Clique em qualquer texto da folha para editar…</span>
 </div>
 
@@ -610,6 +625,30 @@ function changeFontSize(delta) {
     el.style.fontSize = currentFontSize + 'pt';
   });
   statusEl.textContent = 'Fonte das listas: ' + currentFontSize + 'pt';
+}
+
+// Negrito na seleção atual (funciona dentro de contenteditable)
+function toggleBoldSelection() {
+  document.execCommand('bold', false, null);
+  statusEl.textContent = 'Negrito aplicado na seleção ✓';
+  clearTimeout(saveTimer);
+  saveTimer = setTimeout(saveData, 600);
+}
+
+// Negrito em todos os nomes das listas
+let allBold = false;
+function toggleBoldAll() {
+  allBold = !allBold;
+  document.querySelectorAll('.col-list li').forEach(li => {
+    if (allBold) {
+      li.style.fontWeight = 'bold';
+    } else {
+      li.style.fontWeight = '';
+    }
+  });
+  statusEl.textContent = allBold ? 'Todos em negrito ✓' : 'Negrito removido de todos ✓';
+  clearTimeout(saveTimer);
+  saveTimer = setTimeout(saveData, 600);
 }
 
 // Adapta seções: se tem pouca gente (ou só "–"/"-"), encolhe a seção
