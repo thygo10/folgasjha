@@ -28,7 +28,9 @@
     width: 210mm;
     height: 297mm;
     max-height: 297mm;
-    margin: 6mm auto;
+    margin: 0 auto;
+    margin-top: 0;
+    padding-top: 0;
     background: #fff;
     box-shadow: 0 0 12px rgba(0,0,0,0.25);
     overflow: hidden;
@@ -45,6 +47,8 @@
     background: #0b2a52 !important;
     overflow: hidden;
     flex-shrink: 0;
+    margin-top: 0;
+    padding-top: 0;
   }
   .header-left {
     display: flex;
@@ -136,11 +140,12 @@
 
   /* Conteúdo distribuído exatamente na folha */
   .content {
-    padding: 2.5mm 5mm;
+    padding: 1.5mm 5mm;
     flex: 1;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: flex-start;
+    gap: 0.6mm;
     min-height: 0;
   }
   .section {
@@ -150,7 +155,7 @@
     overflow: hidden;
     flex: 1;
     max-height: 30mm;
-    margin-bottom: 1.2mm;
+    margin-bottom: 0;
   }
   .section:last-child {
     margin-bottom: 0;
@@ -206,20 +211,25 @@
   .col-list {
     list-style: none;
     margin: 0;
-    padding: 1.2mm 2.5mm;
-    font-size: 7.5pt;
-    line-height: 1.2;
+    padding: 0.8mm 1.5mm;
+    font-size: 6.5pt;
+    line-height: 1.15;
     flex: 1;
     min-height: 0;
     color: #111;
     overflow: hidden;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    gap: 0 2mm;
   }
   .col-list li {
-    padding-left: 2.5mm;
+    padding-left: 2mm;
     position: relative;
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
+    flex-shrink: 0;
   }
   .col-list li::before {
     content: "•";
@@ -343,6 +353,7 @@
       max-height: 297mm !important;
       margin: 0 !important;
       padding: 0 !important;
+      padding-top: 0 !important;
       box-shadow: none !important;
       border: none !important;
       overflow: hidden !important;
@@ -363,6 +374,8 @@
 <div class="toolbar">
   <button onclick="window.print()">🖨️ Imprimir / Salvar PDF (1 Folha A4)</button>
   <button class="btn-reset" onclick="resetData()">↺ Restaurar Padrão</button>
+  <button onclick="changeFontSize(0.5)" title="Aumentar fonte das listas">🔤+ Fonte</button>
+  <button onclick="changeFontSize(-0.5)" title="Diminuir fonte das listas">🔤- Fonte</button>
   <span class="status" id="status">Clique em qualquer texto da folha para editar…</span>
 </div>
 
@@ -604,6 +617,15 @@ document.getElementById('app').addEventListener('input', () => {
   clearTimeout(saveTimer);
   saveTimer = setTimeout(saveData, 600);
 });
+
+let currentFontSize = 6.5; // pt
+function changeFontSize(delta) {
+  currentFontSize = Math.max(4, Math.min(12, currentFontSize + delta));
+  document.querySelectorAll('.col-list').forEach(el => {
+    el.style.fontSize = currentFontSize + 'pt';
+  });
+  statusEl.textContent = 'Fonte das listas: ' + currentFontSize + 'pt';
+}
 
 loadData();
 </script>
