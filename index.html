@@ -28,7 +28,7 @@
     width: 210mm;
     height: 297mm;
     max-height: 297mm;
-    margin: 6mm auto;
+    margin: 0 auto;
     background: #fff;
     box-shadow: 0 0 12px rgba(0,0,0,0.25);
     overflow: hidden;
@@ -37,11 +37,11 @@
     position: relative;
   }
 
-  /* Cabeçalho compacto */
+  /* Cabeçalho colado no topo e compacto */
   .header {
     position: relative;
     display: flex;
-    height: 25mm;
+    height: 19mm;
     background: #0b2a52 !important;
     overflow: hidden;
     flex-shrink: 0;
@@ -49,8 +49,8 @@
   .header-left {
     display: flex;
     align-items: center;
-    gap: 4mm;
-    padding: 0 6mm;
+    gap: 3mm;
+    padding: 0 5mm;
     width: 52%;
     min-width: 0;
     background: #0b2a52 !important;
@@ -64,52 +64,52 @@
     align-items: center;
     justify-content: center;
     position: relative;
-    padding-left: 8mm;
-    padding-right: 14mm;
+    padding-left: 6mm;
+    padding-right: 12mm;
   }
   .logo-icon {
-    width: 12mm;
-    height: 12mm;
+    width: 9.5mm;
+    height: 9.5mm;
     background: #f7c600 !important;
-    border-radius: 2.5mm;
+    border-radius: 2mm;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
   }
   .logo-icon svg {
-    width: 7mm;
-    height: 7mm;
+    width: 5.5mm;
+    height: 5.5mm;
   }
   .brand-text {
     color: #fff;
-    line-height: 1.15;
+    line-height: 1.1;
     min-width: 0;
     flex: 1;
   }
   .brand-text .name1 {
-    font-size: 11.5pt;
+    font-size: 10pt;
     font-weight: 800;
-    letter-spacing: 0.3px;
+    letter-spacing: 0.2px;
     white-space: nowrap;
   }
   .brand-text .name2 {
-    font-size: 11.5pt;
+    font-size: 10pt;
     font-weight: 800;
     color: #f7c600;
-    letter-spacing: 0.3px;
+    letter-spacing: 0.2px;
     white-space: nowrap;
   }
   .brand-text .slogan {
-    font-size: 5.5pt;
-    letter-spacing: 1px;
-    margin-top: 1mm;
+    font-size: 4.8pt;
+    letter-spacing: 0.8px;
+    margin-top: 0.5mm;
     font-weight: 600;
     white-space: nowrap;
     opacity: 0.95;
   }
   .title-text {
-    font-size: 17pt;
+    font-size: 14pt;
     font-weight: 900;
     color: #0b2a52;
     letter-spacing: 0.5px;
@@ -117,26 +117,26 @@
   }
   .calendar-icon {
     position: absolute;
-    right: 5mm;
+    right: 4mm;
     top: 50%;
     transform: translateY(-50%);
-    width: 10mm;
-    height: 10mm;
+    width: 8mm;
+    height: 8mm;
     background: #0b2a52 !important;
-    border-radius: 2.5mm;
+    border-radius: 2mm;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
   }
   .calendar-icon svg {
-    width: 5.5mm;
-    height: 5.5mm;
+    width: 4.5mm;
+    height: 4.5mm;
   }
 
-  /* Conteúdo perfeitamente dimensionado para caber 8 seções em 1 A4 */
+  /* Conteúdo colado no topo com gaps otimizados */
   .content {
-    padding: 2.5mm 5mm;
+    padding: 1.5mm 4mm 1.5mm 4mm;
     flex: 1;
     display: flex;
     flex-direction: column;
@@ -145,18 +145,18 @@
   }
   .section {
     display: flex;
-    border: 1.2px solid #ccc;
-    border-radius: 2.5mm;
+    border: 1px solid #ccc;
+    border-radius: 2mm;
     overflow: hidden;
     flex: 1;
-    max-height: 32mm;
-    margin-bottom: 1.5mm;
+    max-height: 27.5mm;
+    margin-bottom: 1mm;
   }
   .section:last-child {
     margin-bottom: 0;
   }
   .sec-icon {
-    width: 28mm;
+    width: 25mm;
     flex-shrink: 0;
     display: flex;
     flex-direction: column;
@@ -164,17 +164,17 @@
     justify-content: center;
     text-align: center;
     color: #fff;
-    padding: 1.5mm;
-    gap: 1mm;
+    padding: 1mm;
+    gap: 0.5mm;
   }
   .sec-icon svg {
-    width: 7.5mm;
-    height: 7.5mm;
+    width: 6mm;
+    height: 6mm;
   }
   .sec-icon .sec-title {
-    font-size: 7.5pt;
+    font-size: 7pt;
     font-weight: 800;
-    line-height: 1.1;
+    line-height: 1.05;
     color: #fff;
   }
   .theme-yellow .sec-icon .sec-title {
@@ -196,26 +196,26 @@
   }
   .col-head {
     color: #fff;
-    font-size: 7.5pt;
+    font-size: 7pt;
     font-weight: 800;
     text-align: center;
-    padding: 1mm 0;
-    letter-spacing: 0.5px;
+    padding: 0.6mm 0;
+    letter-spacing: 0.4px;
     flex-shrink: 0;
   }
   .col-list {
     list-style: none;
     margin: 0;
-    padding: 1.5mm 2.5mm;
-    font-size: 7.5pt;
-    line-height: 1.2;
+    padding: 1mm 2mm;
+    font-size: 7pt;
+    line-height: 1.15;
     flex: 1;
     min-height: 0;
     color: #111;
     overflow: hidden;
   }
   .col-list li {
-    padding-left: 2.5mm;
+    padding-left: 2mm;
     position: relative;
     white-space: nowrap;
     text-overflow: ellipsis;
@@ -255,11 +255,11 @@
     display: flex;
     align-items: center;
     justify-content: space-around;
-    padding: 2mm 5mm;
-    font-size: 6.5pt;
+    padding: 1.5mm 4mm;
+    font-size: 6pt;
     font-weight: 700;
     text-align: center;
-    gap: 4mm;
+    gap: 3mm;
     flex-shrink: 0;
   }
   .footer .fitem {
@@ -270,15 +270,15 @@
     justify-content: center;
   }
   .footer svg {
-    width: 4.5mm;
-    height: 4.5mm;
+    width: 4mm;
+    height: 4mm;
     flex-shrink: 0;
   }
 
   /* Toolbar superior no navegador */
   .toolbar {
     max-width: 210mm;
-    margin: 8px auto 0;
+    margin: 8px auto 6px;
     text-align: center;
     font-family: Arial, sans-serif;
     display: flex;
@@ -287,7 +287,7 @@
     gap: 12px;
     flex-wrap: wrap;
     background: #fff;
-    padding: 10px 16px;
+    padding: 8px 16px;
     border-radius: 8px;
     box-shadow: 0 2px 6px rgba(0,0,0,0.1);
   }
@@ -295,7 +295,7 @@
     background: #0b2a52;
     color: #fff;
     border: none;
-    padding: 8px 18px;
+    padding: 7px 16px;
     border-radius: 6px;
     font-size: 13px;
     font-weight: bold;
@@ -317,7 +317,7 @@
     font-weight: 500;
   }
 
-  /* ESTILOS DE IMPRESSÃO RIGOROSOS PARA 1 FOLHA A4 COM CORES ATIVAS */
+  /* ESTILOS DE IMPRESSÃO RIGOROSOS PARA 1 FOLHA A4 SEM SOBRA */
   @media print {
     @page {
       size: A4 portrait;
