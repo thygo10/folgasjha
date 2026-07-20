@@ -140,13 +140,13 @@
     height: 5.5mm;
   }
 
-  /* Conteúdo distribuído exatamente na folha */
+  /* Conteúdo distribuído com altura dinâmica e preenchimento perfeito A4 */
   .content {
-    padding: 2mm 4mm;
+    padding: 3mm 4mm;
     flex: 1;
     display: flex;
     flex-direction: column;
-    gap: 1.5mm;
+    justify-content: space-between;
     min-height: 0;
     overflow: hidden;
   }
@@ -155,40 +155,52 @@
     border: 1.2px solid #ccc;
     border-radius: 2.5mm;
     overflow: hidden;
-    flex: 1 1 0;
+    flex: 0 0 auto !important;
     min-height: 0;
   }
-  .section.section-compact {
-    flex: 0 0 auto;
-  }
   .sec-icon {
-    width: 28mm;
+    width: 48mm;
     flex-shrink: 0;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    text-align: left;
+    color: #fff;
+    padding: 2mm 3.5mm;
+    gap: 3mm;
+  }
+  .icon-badge {
+    width: 13mm;
+    height: 13mm;
+    min-width: 13mm;
+    border-radius: 50%;
+    background: #ffffff !important;
+    display: flex;
     align-items: center;
     justify-content: center;
-    text-align: center;
-    color: #fff;
-    padding: 1.5mm;
-    gap: 1mm;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.22);
+    flex-shrink: 0;
   }
-  .sec-icon svg {
-    width: 7.5mm;
-    height: 7.5mm;
+  .icon-badge svg {
+    width: 9mm;
+    height: 9mm;
   }
   .sec-icon .sec-title {
-    font-size: 7.5pt;
+    font-size: 8.5pt;
     font-weight: 800;
-    line-height: 1.1;
+    line-height: 1.15;
     color: #fff;
+    letter-spacing: 0.3px;
   }
   .theme-yellow .sec-icon .sec-title {
-    color: #3a2a00;
+    color: #fff;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.25);
   }
   .sec-body {
     flex: 1;
     display: flex;
+    height: auto;
   }
   .col {
     flex: 1;
@@ -196,38 +208,40 @@
     display: flex;
     flex-direction: column;
     min-width: 0;
+    height: auto;
   }
   .col:first-child {
     border-left: none;
   }
   .col-head {
     color: #fff;
-    font-size: 7pt;
+    font-size: 7.5pt;
     font-weight: 800;
     text-align: center;
-    padding: 0.6mm 0;
+    padding: 0.8mm 0;
     letter-spacing: 0.5px;
     flex-shrink: 0;
   }
   .col-list {
     list-style: none;
     margin: 0;
-    padding: 1mm 2mm;
-    font-size: 8pt;
+    padding: 1.5mm 0;
+    font-size: 12pt;
     line-height: 1.35;
-    flex: 1;
-    min-height: 0;
     color: #222;
-    overflow: hidden;
-    column-count: 1;
-    column-gap: 2mm;
-    column-fill: auto;
+    text-align: center !important;
+    width: 100% !important;
+    display: block !important;
   }
   .col-list li {
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    overflow: hidden;
-    break-inside: avoid;
+    display: block !important;
+    float: none !important;
+    clear: both !important;
+    width: 100% !important;
+    text-align: center !important;
+    white-space: nowrap !important;
+    overflow: visible !important;
+    margin: 0.6mm 0 !important;
   }
 
   /* Edição em tempo real intuitiva */
@@ -242,14 +256,14 @@
   }
 
   /* Cores com suporte total a Impressão */
-  .theme-blue   .sec-icon{ background:#0b2a52 !important; } .theme-blue   .col-head{ background:#0b2a52 !important; color:#fff !important; }
-  .theme-green  .sec-icon{ background:#1e8a3c !important; } .theme-green  .col-head{ background:#1e8a3c !important; color:#fff !important; }
-  .theme-yellow .sec-icon{ background:#f2b600 !important; } .theme-yellow .col-head{ background:#f2b600 !important; color:#3a2a00 !important; }
-  .theme-red    .sec-icon{ background:#c1272d !important; } .theme-red    .col-head{ background:#c1272d !important; color:#fff !important; }
-  .theme-orange .sec-icon{ background:#e8641c !important; } .theme-orange .col-head{ background:#e8641c !important; color:#fff !important; }
-  .theme-purple .sec-icon{ background:#3d1a78 !important; } .theme-purple .col-head{ background:#3d1a78 !important; color:#fff !important; }
-  .theme-teal   .sec-icon{ background:#0e7c8a !important; } .theme-teal   .col-head{ background:#0e7c8a !important; color:#fff !important; }
-  .theme-gray   .sec-icon{ background:#5a5a5a !important; } .theme-gray   .col-head{ background:#5a5a5a !important; color:#fff !important; }
+  .theme-blue   .sec-icon{ background:#0b2a52 !important; } .theme-blue   .col-head{ background:#0b2a52 !important; color:#fff !important; } .theme-blue   .icon-badge svg{ stroke:#0b2a52; fill:none; } .theme-blue   .icon-badge svg [fill]:not([fill="none"]){ fill:#0b2a52; }
+  .theme-green  .sec-icon{ background:#1e8a3c !important; } .theme-green  .col-head{ background:#1e8a3c !important; color:#fff !important; } .theme-green  .icon-badge svg{ stroke:#1e8a3c; fill:none; } .theme-green  .icon-badge svg [fill]:not([fill="none"]){ fill:#1e8a3c; }
+  .theme-yellow .sec-icon{ background:#f2b600 !important; } .theme-yellow .col-head{ background:#f2b600 !important; color:#fff !important; } .theme-yellow .icon-badge svg{ stroke:#d98200; fill:none; } .theme-yellow .icon-badge svg [fill]:not([fill="none"]){ fill:#d98200; }
+  .theme-red    .sec-icon{ background:#c1272d !important; } .theme-red    .col-head{ background:#c1272d !important; color:#fff !important; } .theme-red    .icon-badge svg{ stroke:#c1272d; fill:none; } .theme-red    .icon-badge svg [fill]:not([fill="none"]){ fill:#c1272d; }
+  .theme-orange .sec-icon{ background:#e8641c !important; } .theme-orange .col-head{ background:#e8641c !important; color:#fff !important; } .theme-orange .icon-badge svg{ stroke:#e8641c; fill:none; } .theme-orange .icon-badge svg [fill]:not([fill="none"]){ fill:#e8641c; }
+  .theme-purple .sec-icon{ background:#3d1a78 !important; } .theme-purple .col-head{ background:#3d1a78 !important; color:#fff !important; } .theme-purple .icon-badge svg{ stroke:#3d1a78; fill:none; } .theme-purple .icon-badge svg [fill]:not([fill="none"]){ fill:#3d1a78; }
+  .theme-teal   .sec-icon{ background:#0e7c8a !important; } .theme-teal   .col-head{ background:#0e7c8a !important; color:#fff !important; } .theme-teal   .icon-badge svg{ stroke:#0e7c8a; fill:none; } .theme-teal   .icon-badge svg [fill]:not([fill="none"]){ fill:#0e7c8a; }
+  .theme-gray   .sec-icon{ background:#5a5a5a !important; } .theme-gray   .col-head{ background:#5a5a5a !important; color:#fff !important; } .theme-gray   .icon-badge svg{ stroke:#5a5a5a; fill:none; } .theme-gray   .icon-badge svg [fill]:not([fill="none"]){ fill:#5a5a5a; }
 
   /* Rodapé compacto */
   .footer {
@@ -300,12 +314,19 @@
     background: #061c37;
     color: #fff;
     border: 2px solid #061c37;
-    padding: 7px 14px;
+    padding: 0 14px;
+    height: 34px;
     border-radius: 6px;
     font-size: 12px;
     font-weight: bold;
     cursor: pointer;
     transition: all 0.2s;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    vertical-align: middle;
+    white-space: nowrap;
   }
   .toolbar button:hover {
     background: #14427c;
@@ -315,7 +336,7 @@
     background: #111;
     border-color: #111;
     font-size: 14px;
-    padding: 5px 12px;
+    padding: 0 12px;
   }
   .toolbar button.btn-bold:hover {
     background: #444;
@@ -355,55 +376,105 @@
     border-color: #0b2a52;
   }
 
-  .status {
-    font-size: 12px;
-    color: #555;
-    font-weight: 500;
+  .toolbar button.btn-save {
+    background: #2b8a3e;
+    border-color: #2b8a3e;
+    color: #fff;
+  }
+  .toolbar button.btn-save:hover {
+    background: #237032;
+    border-color: #237032;
+  }
+  .toolbar button.btn-save.unsaved {
+    background: #e67e22;
+    border-color: #d35400;
+    animation: pulseSave 1.5s infinite;
+  }
+  @keyframes pulseSave {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
   }
 
-  /* ESTILOS DE IMPRESSÃO RIGOROSOS PARA 1 FOLHA A4 */
-  @media print {
-    @page {
-      size: A4 portrait;
-      margin: 0mm !important;
-    }
-    html, body {
-      width: 210mm !important;
-      height: 297mm !important;
-      margin: 0 !important;
-      padding: 0 !important;
-      overflow: hidden !important;
-      background: #fff !important;
-      -webkit-print-color-adjust: exact !important;
-      print-color-adjust: exact !important;
-      color-adjust: exact !important;
-    }
-    .toolbar {
-      display: none !important;
-    }
-    .page {
-      display: none !important;
-    }
-    .page.active {
-      display: flex !important;
-      width: 210mm !important;
-      height: 297mm !important;
-      max-height: 297mm !important;
-      margin: 0 !important;
-      padding: 0 !important;
-      box-shadow: none !important;
-      border: none !important;
-      overflow: hidden !important;
-      page-break-after: avoid !important;
-      page-break-inside: avoid !important;
-      -webkit-print-color-adjust: exact !important;
-      print-color-adjust: exact !important;
-    }
-    [contenteditable]:focus {
-      outline: none !important;
-      background: transparent !important;
-    }
+  /* Modal de Confirmação com Efeito Blur (Desfoque de Fundo) */
+  .modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(11, 42, 82, 0.45);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 99999;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s ease;
   }
+  .modal-overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+  }
+  .modal-card {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 24px 30px;
+    max-width: 440px;
+    width: 90%;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+    text-align: center;
+    transform: scale(0.92);
+    transition: transform 0.25s ease;
+  }
+  .modal-overlay.active .modal-card {
+    transform: scale(1);
+  }
+  .modal-icon {
+    font-size: 38px;
+    margin-bottom: 8px;
+  }
+  .modal-title {
+    font-size: 18px;
+    font-weight: 800;
+    color: #0b2a52;
+    margin-bottom: 8px;
+  }
+  .modal-body {
+    font-size: 13.5px;
+    color: #444;
+    margin-bottom: 22px;
+    line-height: 1.5;
+  }
+  .modal-actions {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+  }
+  .modal-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 0 18px;
+    height: 40px;
+    border-radius: 6px;
+    font-weight: bold;
+    font-size: 13px;
+    cursor: pointer;
+    border: none;
+    white-space: nowrap;
+    transition: all 0.2s;
+  }
+  .modal-btn-primary { background: #2b8a3e; color: #fff; }
+  .modal-btn-primary:hover { background: #237032; }
+  .modal-btn-danger { background: #c1272d; color: #fff; }
+  .modal-btn-danger:hover { background: #9e1f24; }
+  .modal-btn-secondary { background: #e2e6ea; color: #333; }
+  .modal-btn-secondary:hover { background: #ced4da; }
 </style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 </head>
@@ -413,8 +484,9 @@
   <button class="btn-tab active" id="tab-semana" onclick="switchTab('semana')">📅 Semana (Terça a Sexta)</button>
   <button class="btn-tab" id="tab-domingo" onclick="switchTab('domingo')">📅 Domingo (19/07)</button>
   <span style="border-left: 2px solid #ccc; height: 20px; margin: 0 4px;"></span>
+  <button class="btn-save" id="btn-save" onclick="saveData(true)">💾 Salvar</button>
   <button onclick="window.print()">🖨️ Imprimir PDF</button>
-  <button class="btn-reset" onclick="resetData()">↺ Restaurar</button>
+  <button class="btn-reset" onclick="confirmResetData()">↺ Restaurar</button>
   <button onclick="changeFontSize(0.5)">🔤+ Fonte</button>
   <button onclick="changeFontSize(-0.5)">🔤- Fonte</button>
   <button class="btn-bold" onclick="toggleBoldSelection()"><b>B</b> Seleção</button>
@@ -449,50 +521,56 @@
 
     <div class="section theme-blue">
       <div class="sec-icon">
-        <svg viewBox="0 0 24 24" fill="none"><rect x="2" y="6" width="20" height="12" rx="2" stroke="#fff" stroke-width="1.6"/><circle cx="7" cy="18" r="1.4" fill="#fff"/><circle cx="17" cy="18" r="1.4" fill="#fff"/></svg>
+        <div class="icon-badge">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="9" rx="1.5"/><path d="M7 7h10"/><path d="M7 9.5h6"/><path d="M2 16h20v4a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1v-4z"/><path d="M4 12h16l1.5 4H2.5l1.5-4z"/><circle cx="6.5" cy="18.5" r="0.8" fill="currentColor"/><circle cx="9.5" cy="18.5" r="0.8" fill="currentColor"/><path d="M13.5 18.5h4"/></svg>
+        </div>
         <div class="sec-title" contenteditable="true" data-key="s1-title">1. OPERADORES DE CAIXA</div>
       </div>
       <div class="sec-body">
         <div class="col"><div class="col-head" contenteditable="true" data-key="s1-h1">TERÇA</div>
-          <ul class="col-list" contenteditable="true" data-key="s1-l1"><li>Nayle</li><li>Mônica</li><li>Alane</li><li>Ana Paula</li><li>John</li><li>Ana Luísa</li><li>Luciana</li></ul></div>
+          <ul class="col-list" contenteditable="true" data-key="s1-l1"><li>Nayle</li><li>Alane</li><li>Ana Paula</li><li>John</li><li>Ana Luísa</li><li>Jaqueline</li><li>Ana Beatriz</li></ul></div>
         <div class="col"><div class="col-head" contenteditable="true" data-key="s1-h2">QUARTA</div>
-          <ul class="col-list" contenteditable="true" data-key="s1-l2"><li>Grazielle</li><li>Sirlei</li><li>Ana Félix</li><li>Sabrina</li><li>Viviane</li><li>Laísa</li><li>Ana Cláudia</li></ul></div>
+          <ul class="col-list" contenteditable="true" data-key="s1-l2"><li>Jaine</li><li>Kamilly</li><li>Ana Félix</li><li>Sabrina</li><li>Viviane</li><li>Laísa</li><li>Ana Cláudia</li></ul></div>
         <div class="col"><div class="col-head" contenteditable="true" data-key="s1-h3">QUINTA</div>
-          <ul class="col-list" contenteditable="true" data-key="s1-l3"><li>Vinícius</li><li>Micaele</li><li>Valquíria</li><li>Fabrício</li><li>Flávia</li><li>Ilka</li><li>Jéssica</li><li>Fabiola</li></ul></div>
+          <ul class="col-list" contenteditable="true" data-key="s1-l3"><li>Claudia</li><li>Joesiane</li><li>Sueli</li><li>Luciene</li><li>Luciana</li><li>Mateus</li><li>Natália</li></ul></div>
         <div class="col"><div class="col-head" contenteditable="true" data-key="s1-h4">SEXTA</div>
-          <ul class="col-list" contenteditable="true" data-key="s1-l4"><li>Istelia</li><li>Ana Caroline</li><li>Bruna</li><li>Andreza</li></ul></div>
+          <ul class="col-list" contenteditable="true" data-key="s1-l4"><li>Edma</li><li>Analandia</li><li>Roseli</li><li>Edinalia</li></ul></div>
       </div>
     </div>
 
     <div class="section theme-green">
       <div class="sec-icon">
-        <svg viewBox="0 0 24 24" fill="none"><path d="M2 3h2l2.4 12.2a2 2 0 0 0 2 1.6h8.6a2 2 0 0 0 2-1.6L21 7H6" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><circle cx="9" cy="21" r="1.2" fill="#fff"/><circle cx="18" cy="21" r="1.2" fill="#fff"/></svg>
+        <div class="icon-badge">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="20" r="1.6" fill="currentColor"/><circle cx="18" cy="20" r="1.6" fill="currentColor"/><path d="M2 3h3.2l2.3 10.5a1.5 1.5 0 0 0 1.5 1.2h8.5a1.5 1.5 0 0 0 1.5-1.2L21 6H6"/><path d="M9 10v3M13 8v5M17 10v3M7 11.5h13"/></svg>
+        </div>
         <div class="sec-title" contenteditable="true" data-key="s2-title">2. REPOSITORES</div>
       </div>
       <div class="sec-body">
         <div class="col"><div class="col-head" contenteditable="true" data-key="s2-h1">TERÇA</div>
-          <ul class="col-list" contenteditable="true" data-key="s2-l1"><li>Jovando</li><li>Cláudio</li><li>Emerson</li></ul></div>
+          <ul class="col-list" contenteditable="true" data-key="s2-l1"><li>Jovando</li><li>Cláudio</li><li>Daniel</li><li>Mateus</li><li>Suzaine</li></ul></div>
         <div class="col"><div class="col-head" contenteditable="true" data-key="s2-h2">QUARTA</div>
-          <ul class="col-list" contenteditable="true" data-key="s2-l2"><li>Wellington</li><li>Daniel</li><li>Danilo</li></ul></div>
+          <ul class="col-list" contenteditable="true" data-key="s2-l2"><li>Wellington</li><li>Roberto Jose</li><li>Danilo</li><li>Marcelo</li></ul></div>
         <div class="col"><div class="col-head" contenteditable="true" data-key="s2-h3">QUINTA</div>
-          <ul class="col-list" contenteditable="true" data-key="s2-l3"><li>Lucas</li><li>Paulo César</li><li>Joselane</li><li>André Oliveira</li></ul></div>
+          <ul class="col-list" contenteditable="true" data-key="s2-l3"><li>Catarino</li><li>André Santana</li><li>Giovanne</li><li>Emerson</li></ul></div>
         <div class="col"><div class="col-head" contenteditable="true" data-key="s2-h4">SEXTA</div>
-          <ul class="col-list" contenteditable="true" data-key="s2-l4"><li>Gindausio</li><li>Marciano</li><li>Rafael</li></ul></div>
+          <ul class="col-list" contenteditable="true" data-key="s2-l4"><li>Leandro</li><li>Fagner</li><li>Rafael</li></ul></div>
       </div>
     </div>
 
     <div class="section theme-yellow">
       <div class="sec-icon">
-        <svg viewBox="0 0 24 24" fill="none"><path d="M6 3v6a4 4 0 0 0 8 0V3M10 9v12" stroke="#3a2a00" stroke-width="1.8" stroke-linecap="round"/><path d="M17 3s2 3 2 6-2 4-2 4v8" stroke="#3a2a00" stroke-width="1.8" stroke-linecap="round"/></svg>
+        <div class="icon-badge">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9l1 10.5a1.5 1.5 0 0 0 1.5 1.5h3a1.5 1.5 0 0 0 1.5-1.5L12 9H4z"/><path d="M3 9h10"/><path d="M9 3.5l-1.5 5.5"/><path d="M13.5 13a3.5 3.5 0 0 1 7 0h-7z"/><path d="M13 16h8.5"/><path d="M14 19.5h6.5a1 1 0 0 0 1-1v-.5H13v.5a1 1 0 0 0 1 1z"/></svg>
+        </div>
         <div class="sec-title" contenteditable="true" data-key="s3-title">3. ASSISTENTE<br>DE LANCHONETE</div>
       </div>
       <div class="sec-body">
         <div class="col"><div class="col-head" contenteditable="true" data-key="s3-h1">TERÇA</div>
           <ul class="col-list" contenteditable="true" data-key="s3-l1"><li>Eduarda</li><li>Valdenice</li></ul></div>
         <div class="col"><div class="col-head" contenteditable="true" data-key="s3-h2">QUARTA</div>
-          <ul class="col-list" contenteditable="true" data-key="s3-l2"><li>Nicole</li></ul></div>
+          <ul class="col-list" contenteditable="true" data-key="s3-l2"><li>Nicole</li><li>Normelia</li></ul></div>
         <div class="col"><div class="col-head" contenteditable="true" data-key="s3-h3">QUINTA</div>
-          <ul class="col-list" contenteditable="true" data-key="s3-l3"><li>Bruna</li><li>Fernanda</li></ul></div>
+          <ul class="col-list" contenteditable="true" data-key="s3-l3"><li>Marielle</li><li>Angela</li></ul></div>
         <div class="col"><div class="col-head" contenteditable="true" data-key="s3-h4">SEXTA</div>
           <ul class="col-list" contenteditable="true" data-key="s3-l4"><li>Ivonete</li></ul></div>
       </div>
@@ -500,41 +578,47 @@
 
     <div class="section theme-red">
       <div class="sec-icon">
-        <svg viewBox="0 0 24 24" fill="none"><circle cx="9" cy="9" r="3" stroke="#fff" stroke-width="1.8"/><path d="M11 11l7 7-2 2-7-7" stroke="#fff" stroke-width="1.8" stroke-linecap="round"/></svg>
+        <div class="icon-badge">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19.5 5.5c-2.2-2.2-5.8-2.2-8 0L4.8 12.2c-2.2 2.2-2.2 5.8 0 8 2.2 2.2 5.8 2.2 8 0l6.7-6.7c2.2-2.2 2.2-5.8 0-8z"/><circle cx="15.5" cy="9.5" r="2.2" fill="currentColor"/><path d="M8.5 16.5l2-2"/></svg>
+        </div>
         <div class="sec-title" contenteditable="true" data-key="s4-title">4. AÇOUGUE</div>
       </div>
       <div class="sec-body">
         <div class="col"><div class="col-head" contenteditable="true" data-key="s4-h1">TERÇA</div>
-          <ul class="col-list" contenteditable="true" data-key="s4-l1"><li>Vagner</li><li>Ana</li><li>Erick</li></ul></div>
+          <ul class="col-list" contenteditable="true" data-key="s4-l1"><li>Gabriel</li><li>Erick</li></ul></div>
         <div class="col"><div class="col-head" contenteditable="true" data-key="s4-h2">QUARTA</div>
-          <ul class="col-list" contenteditable="true" data-key="s4-l2"><li>Roberto</li><li>Valdinei</li></ul></div>
+          <ul class="col-list" contenteditable="true" data-key="s4-l2"><li>Roberto</li><li>Ana</li></ul></div>
         <div class="col"><div class="col-head" contenteditable="true" data-key="s4-h3">QUINTA</div>
-          <ul class="col-list" contenteditable="true" data-key="s4-l3"><li>Luan</li><li>Gabriel</li></ul></div>
+          <ul class="col-list" contenteditable="true" data-key="s4-l3"><li>Paulo</li><li>Vagner</li></ul></div>
         <div class="col"><div class="col-head" contenteditable="true" data-key="s4-h4">SEXTA</div>
-          <ul class="col-list" contenteditable="true" data-key="s4-l4"><li>David</li></ul></div>
+          <ul class="col-list" contenteditable="true" data-key="s4-l4"><li>Marcos</li><li>Kauam</li></ul></div>
       </div>
     </div>
 
     <div class="section theme-orange">
       <div class="sec-icon">
-        <svg viewBox="0 0 24 24" fill="none"><ellipse cx="12" cy="14" rx="9" ry="6" stroke="#fff" stroke-width="1.8"/><path d="M6 12c1-3 3-6 6-6s5 3 6 6" stroke="#fff" stroke-width="1.8" stroke-linecap="round"/></svg>
+        <div class="icon-badge">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 13.5C3 9.5 6.5 6.5 12 6.5s9 3 9 7c0 2.5-1.5 4.5-3.5 4.5h-11C4.5 18 3 16 3 13.5z"/><path d="M7.5 10l3 4.5M12 9l3 5.5M16.5 10l2.5 4.5"/></svg>
+        </div>
         <div class="sec-title" contenteditable="true" data-key="s5-title">5. PADARIA<br>(PRODUÇÃO)</div>
       </div>
       <div class="sec-body">
         <div class="col"><div class="col-head" contenteditable="true" data-key="s5-h1">TERÇA</div>
-          <ul class="col-list" contenteditable="true" data-key="s5-l1"><li>Evandro</li><li>Maísa</li><li>Luiz Henrique</li></ul></div>
+          <ul class="col-list" contenteditable="true" data-key="s5-l1"><li>Evandro</li><li>Maisa</li></ul></div>
         <div class="col"><div class="col-head" contenteditable="true" data-key="s5-h2">QUARTA</div>
-          <ul class="col-list" contenteditable="true" data-key="s5-l2"><li>Erick</li><li>Jeane</li><li>Thaís</li></ul></div>
+          <ul class="col-list" contenteditable="true" data-key="s5-l2"><li>Erick</li><li>Jeane</li></ul></div>
         <div class="col"><div class="col-head" contenteditable="true" data-key="s5-h3">QUINTA</div>
-          <ul class="col-list" contenteditable="true" data-key="s5-l3"><li>Raquel</li><li>Yuri</li><li>Demilson</li></ul></div>
+          <ul class="col-list" contenteditable="true" data-key="s5-l3"><li>Raquel</li><li>Yuri</li><li>Thais</li></ul></div>
         <div class="col"><div class="col-head" contenteditable="true" data-key="s5-h4">SEXTA</div>
-          <ul class="col-list" contenteditable="true" data-key="s5-l4"><li>–</li></ul></div>
+          <ul class="col-list" contenteditable="true" data-key="s5-l4"><li>-</li></ul></div>
       </div>
     </div>
 
     <div class="section theme-purple">
       <div class="sec-icon">
-        <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="3.5" stroke="#fff" stroke-width="1.8"/><path d="M5 21c0-4 3-7 7-7s7 3 7 7" stroke="#fff" stroke-width="1.8" stroke-linecap="round"/></svg>
+        <div class="icon-badge">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="7" r="4"/><path d="M2 20v-1.5A4.5 4.5 0 0 1 6.5 14h5A4.5 4.5 0 0 1 16 18.5V20"/><path d="M15 11l2.5 2.5L22 9" stroke-width="2.2"/></svg>
+        </div>
         <div class="sec-title" contenteditable="true" data-key="s6-title">6. FISCAL<br>DE CAIXA</div>
       </div>
       <div class="sec-body">
@@ -543,43 +627,47 @@
         <div class="col"><div class="col-head" contenteditable="true" data-key="s6-h2">QUARTA</div>
           <ul class="col-list" contenteditable="true" data-key="s6-l2"><li>Ualas</li></ul></div>
         <div class="col"><div class="col-head" contenteditable="true" data-key="s6-h3">QUINTA</div>
-          <ul class="col-list" contenteditable="true" data-key="s6-l3"><li>Cleide</li></ul></div>
+          <ul class="col-list" contenteditable="true" data-key="s6-l3"><li>Lane</li></ul></div>
         <div class="col"><div class="col-head" contenteditable="true" data-key="s6-h4">SEXTA</div>
-          <ul class="col-list" contenteditable="true" data-key="s6-l4"><li>Thiago</li></ul></div>
+          <ul class="col-list" contenteditable="true" data-key="s6-l4"><li>Romildo</li></ul></div>
       </div>
     </div>
 
     <div class="section theme-teal">
       <div class="sec-icon">
-        <svg viewBox="0 0 24 24" fill="none"><rect x="2" y="10" width="8" height="7" rx="1" stroke="#fff" stroke-width="1.6"/><path d="M10 17V6h3v11M13 8h4l3 4v5h-3" stroke="#fff" stroke-width="1.6" stroke-linejoin="round"/><circle cx="6" cy="19" r="1.4" fill="#fff"/><circle cx="17" cy="19" r="1.4" fill="#fff"/></svg>
+        <div class="icon-badge">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 16h10V7H6.5L3 11.5V16z"/><path d="M6.5 7v4.5H12"/><path d="M12 4v13"/><path d="M16 7v10h5"/><circle cx="5" cy="18.5" r="2" fill="currentColor"/><circle cx="10" cy="18.5" r="2" fill="currentColor"/></svg>
+        </div>
         <div class="sec-title" contenteditable="true" data-key="s7-title">7. OPERADOR DE<br>EMPILHADEIRA</div>
       </div>
       <div class="sec-body">
         <div class="col"><div class="col-head" contenteditable="true" data-key="s7-h1">TERÇA</div>
-          <ul class="col-list" contenteditable="true" data-key="s7-l1"><li>–</li></ul></div>
+          <ul class="col-list" contenteditable="true" data-key="s7-l1"><li>Reginaldo</li></ul></div>
         <div class="col"><div class="col-head" contenteditable="true" data-key="s7-h2">QUARTA</div>
-          <ul class="col-list" contenteditable="true" data-key="s7-l2"><li>–</li></ul></div>
+          <ul class="col-list" contenteditable="true" data-key="s7-l2"><li>-</li></ul></div>
         <div class="col"><div class="col-head" contenteditable="true" data-key="s7-h3">QUINTA</div>
-          <ul class="col-list" contenteditable="true" data-key="s7-l3"><li>–</li></ul></div>
+          <ul class="col-list" contenteditable="true" data-key="s7-l3"><li>-</li></ul></div>
         <div class="col"><div class="col-head" contenteditable="true" data-key="s7-h4">SEXTA</div>
-          <ul class="col-list" contenteditable="true" data-key="s7-l4"><li>–</li></ul></div>
+          <ul class="col-list" contenteditable="true" data-key="s7-l4"><li>-</li></ul></div>
       </div>
     </div>
 
     <div class="section theme-gray">
       <div class="sec-icon">
-        <svg viewBox="0 0 24 24" fill="none"><path d="M8 3l8 8M14 3l-9 9-2 6 6-2 9-9" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <div class="icon-badge">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9h9.5l-1.2 9.2a1.5 1.5 0 0 1-1.5 1.3H5.2a1.5 1.5 0 0 1-1.5-1.3L2.5 9z"/><path d="M5.5 5.5a2.5 2.5 0 0 1 4.5 0"/><path d="M19 3l-4.5 4.5"/><path d="M14.5 7.5l-2 4h4.5l-2.5-4z"/><path d="M14.5 11.5V20"/></svg>
+        </div>
         <div class="sec-title" contenteditable="true" data-key="s8-title">8. HIGIENIZAÇÃO</div>
       </div>
       <div class="sec-body">
         <div class="col"><div class="col-head" contenteditable="true" data-key="s8-h1">TERÇA</div>
-          <ul class="col-list" contenteditable="true" data-key="s8-l1"><li>Marinalva</li></ul></div>
+          <ul class="col-list" contenteditable="true" data-key="s8-l1"><li>Eliomar</li></ul></div>
         <div class="col"><div class="col-head" contenteditable="true" data-key="s8-h2">QUARTA</div>
-          <ul class="col-list" contenteditable="true" data-key="s8-l2"><li>Elionar</li></ul></div>
+          <ul class="col-list" contenteditable="true" data-key="s8-l2"><li>Acleia</li></ul></div>
         <div class="col"><div class="col-head" contenteditable="true" data-key="s8-h3">QUINTA</div>
-          <ul class="col-list" contenteditable="true" data-key="s8-l3"><li>Lécia</li></ul></div>
+          <ul class="col-list" contenteditable="true" data-key="s8-l3"><li>Gilvan</li></ul></div>
         <div class="col"><div class="col-head" contenteditable="true" data-key="s8-h4">SEXTA</div>
-          <ul class="col-list" contenteditable="true" data-key="s8-l4"><li>–</li></ul></div>
+          <ul class="col-list" contenteditable="true" data-key="s8-l4"><li>-</li></ul></div>
       </div>
     </div>
 
@@ -607,11 +695,7 @@
       <div class="brand-text">
         <div><span class="name1" contenteditable="true" data-key="dom-name1">JOÃO HENRIQUE</span></div>
         <div><span class="name2" contenteditable="true" data-key="dom-name2">ATACADISTA</span></div>
-        <div class="slogan" contenteditable="true" data-key="dom-slogan">TRABALHO · RESPEITO · COMPROMISSO</div>
-      </div>
-    </div>
-    <div class="header-right">
-      <span class="title-text" contenteditable="true" data-key="dom-title">ESCALA DE DOMINGO</span>
+        <div class="slogan" contenteditable="true" data-key="dom-slogan">TRABALHO · R      <span class="title-text" contenteditable="true" data-key="dom-title">ESCALA DE DOMINGO (19/07)</span>
       <div class="calendar-icon">
         <svg viewBox="0 0 24 24" fill="none"><rect x="3" y="4" width="18" height="17" rx="2" stroke="#fff" stroke-width="2"/><path d="M3 9h18M8 2v4M16 2v4" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg>
       </div>
@@ -622,7 +706,9 @@
 
     <div class="section theme-blue">
       <div class="sec-icon">
-        <svg viewBox="0 0 24 24" fill="none"><rect x="2" y="6" width="20" height="12" rx="2" stroke="#fff" stroke-width="1.6"/><circle cx="7" cy="18" r="1.4" fill="#fff"/><circle cx="17" cy="18" r="1.4" fill="#fff"/></svg>
+        <div class="icon-badge">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="9" rx="1.5"/><path d="M7 7h10"/><path d="M7 9.5h6"/><path d="M2 16h20v4a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1v-4z"/><path d="M4 12h16l1.5 4H2.5l1.5-4z"/><circle cx="6.5" cy="18.5" r="0.8" fill="currentColor"/><circle cx="9.5" cy="18.5" r="0.8" fill="currentColor"/><path d="M13.5 18.5h4"/></svg>
+        </div>
         <div class="sec-title" contenteditable="true" data-key="dom-s1-title">1. OPERADORES DE CAIXA</div>
       </div>
       <div class="sec-body">
@@ -637,7 +723,9 @@
 
     <div class="section theme-green">
       <div class="sec-icon">
-        <svg viewBox="0 0 24 24" fill="none"><path d="M2 3h2l2.4 12.2a2 2 0 0 0 2 1.6h8.6a2 2 0 0 0 2-1.6L21 7H6" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><circle cx="9" cy="21" r="1.2" fill="#fff"/><circle cx="18" cy="21" r="1.2" fill="#fff"/></svg>
+        <div class="icon-badge">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="20" r="1.6" fill="currentColor"/><circle cx="18" cy="20" r="1.6" fill="currentColor"/><path d="M2 3h3.2l2.3 10.5a1.5 1.5 0 0 0 1.5 1.2h8.5a1.5 1.5 0 0 0 1.5-1.2L21 6H6"/><path d="M9 10v3M13 8v5M17 10v3M7 11.5h13"/></svg>
+        </div>
         <div class="sec-title" contenteditable="true" data-key="dom-s2-title">2. REPOSITORES</div>
       </div>
       <div class="sec-body">
@@ -650,7 +738,9 @@
 
     <div class="section theme-yellow">
       <div class="sec-icon">
-        <svg viewBox="0 0 24 24" fill="none"><path d="M6 3v6a4 4 0 0 0 8 0V3M10 9v12" stroke="#3a2a00" stroke-width="1.8" stroke-linecap="round"/><path d="M17 3s2 3 2 6-2 4-2 4v8" stroke="#3a2a00" stroke-width="1.8" stroke-linecap="round"/></svg>
+        <div class="icon-badge">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9l1 10.5a1.5 1.5 0 0 0 1.5 1.5h3a1.5 1.5 0 0 0 1.5-1.5L12 9H4z"/><path d="M3 9h10"/><path d="M9 3.5l-1.5 5.5"/><path d="M13.5 13a3.5 3.5 0 0 1 7 0h-7z"/><path d="M13 16h8.5"/><path d="M14 19.5h6.5a1 1 0 0 0 1-1v-.5H13v.5a1 1 0 0 0 1 1z"/></svg>
+        </div>
         <div class="sec-title" contenteditable="true" data-key="dom-s3-title">3. ASSISTENTE<br>DE LANCHONETE</div>
       </div>
       <div class="sec-body">
@@ -665,7 +755,9 @@
 
     <div class="section theme-red">
       <div class="sec-icon">
-        <svg viewBox="0 0 24 24" fill="none"><circle cx="9" cy="9" r="3" stroke="#fff" stroke-width="1.8"/><path d="M11 11l7 7-2 2-7-7" stroke="#fff" stroke-width="1.8" stroke-linecap="round"/></svg>
+        <div class="icon-badge">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19.5 5.5c-2.2-2.2-5.8-2.2-8 0L4.8 12.2c-2.2 2.2-2.2 5.8 0 8 2.2 2.2 5.8 2.2 8 0l6.7-6.7c2.2-2.2 2.2-5.8 0-8z"/><circle cx="15.5" cy="9.5" r="2.2" fill="currentColor"/><path d="M8.5 16.5l2-2"/></svg>
+        </div>
         <div class="sec-title" contenteditable="true" data-key="dom-s4-title">4. AÇOUGUE</div>
       </div>
       <div class="sec-body">
@@ -680,7 +772,9 @@
 
     <div class="section theme-orange">
       <div class="sec-icon">
-        <svg viewBox="0 0 24 24" fill="none"><ellipse cx="12" cy="14" rx="9" ry="6" stroke="#fff" stroke-width="1.8"/><path d="M6 12c1-3 3-6 6-6s5 3 6 6" stroke="#fff" stroke-width="1.8" stroke-linecap="round"/></svg>
+        <div class="icon-badge">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 13.5C3 9.5 6.5 6.5 12 6.5s9 3 9 7c0 2.5-1.5 4.5-3.5 4.5h-11C4.5 18 3 16 3 13.5z"/><path d="M7.5 10l3 4.5M12 9l3 5.5M16.5 10l2.5 4.5"/></svg>
+        </div>
         <div class="sec-title" contenteditable="true" data-key="dom-s5-title">5. PADARIA<br>(PRODUÇÃO)</div>
       </div>
       <div class="sec-body">
@@ -691,20 +785,24 @@
 
     <div class="section theme-purple">
       <div class="sec-icon">
-        <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="3.5" stroke="#fff" stroke-width="1.8"/><path d="M5 21c0-4 3-7 7-7s7 3 7 7" stroke="#fff" stroke-width="1.8" stroke-linecap="round"/></svg>
+        <div class="icon-badge">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="7" r="4"/><path d="M2 20v-1.5A4.5 4.5 0 0 1 6.5 14h5A4.5 4.5 0 0 1 16 18.5V20"/><path d="M15 11l2.5 2.5L22 9" stroke-width="2.2"/></svg>
+        </div>
         <div class="sec-title" contenteditable="true" data-key="dom-s6-title">6. FISCAL<br>DE CAIXA</div>
       </div>
       <div class="sec-body">
         <div class="col"><div class="col-head" contenteditable="true" data-key="dom-s6-h1">08:00 ÀS 17:00<br>(1H30 ALMOÇO)</div>
           <ul class="col-list" contenteditable="true" data-key="dom-s6-l1"><li>Walta</li></ul></div>
-        <div class="col"><div class="col-head" contenteditable="true" data-key="dom-s6-h2">10:00 ÀS 20:00</div>
+        <div class="col"><div class="col-head" contenteditable="true" data-key="dom-s6-h2">10:00 ÀS 20:00<br>(1H30 ALMOÇO)</div>
           <ul class="col-list" contenteditable="true" data-key="dom-s6-l2"><li>Ualas</li></ul></div>
       </div>
     </div>
 
     <div class="section theme-teal">
       <div class="sec-icon">
-        <svg viewBox="0 0 24 24" fill="none"><rect x="2" y="10" width="8" height="7" rx="1" stroke="#fff" stroke-width="1.6"/><path d="M10 17V6h3v11M13 8h4l3 4v5h-3" stroke="#fff" stroke-width="1.6" stroke-linejoin="round"/><circle cx="6" cy="19" r="1.4" fill="#fff"/><circle cx="17" cy="19" r="1.4" fill="#fff"/></svg>
+        <div class="icon-badge">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 16h10V7H6.5L3 11.5V16z"/><path d="M6.5 7v4.5H12"/><path d="M12 4v13"/><path d="M16 7v10h5"/><circle cx="5" cy="18.5" r="2" fill="currentColor"/><circle cx="10" cy="18.5" r="2" fill="currentColor"/></svg>
+        </div>
         <div class="sec-title" contenteditable="true" data-key="dom-s7-title">7. EMPILHADOR</div>
       </div>
       <div class="sec-body">
@@ -715,7 +813,9 @@
 
     <div class="section theme-gray">
       <div class="sec-icon">
-        <svg viewBox="0 0 24 24" fill="none"><path d="M8 3l8 8M14 3l-9 9-2 6 6-2 9-9" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <div class="icon-badge">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9h9.5l-1.2 9.2a1.5 1.5 0 0 1-1.5 1.3H5.2a1.5 1.5 0 0 1-1.5-1.3L2.5 9z"/><path d="M5.5 5.5a2.5 2.5 0 0 1 4.5 0"/><path d="M19 3l-4.5 4.5"/><path d="M14.5 7.5l-2 4h4.5l-2.5-4z"/><path d="M14.5 11.5V20"/></svg>
+        </div>
         <div class="sec-title" contenteditable="true" data-key="dom-s8-title">8. LIMPEZA</div>
       </div>
       <div class="sec-body">
@@ -739,274 +839,25 @@
 </div>
 
 <script>
-const STORAGE_KEY = 'escala-folga-jha-v2';
+const STORAGE_KEY = 'escala-folga-jha-v11';
 const statusEl = document.getElementById('status');
 let saveTimer = null;
+let hasUnsavedChanges = false;
+let pendingAction = null;
 
-function collectData() {
-  const data = {};
-  document.querySelectorAll('[data-key]').forEach(el => {
-    data[el.getAttribute('data-key')] = el.innerHTML;
-  });
-  return data;
-}
-
-function applyData(data) {
-  if (!data) return;
-  Object.keys(data).forEach(key => {
-    const el = document.querySelector('[data-key="' + key + '"]');
-    if (el) el.innerHTML = data[key];
-  });
-}
-
-function saveData() {
-  try {
-    const data = collectData();
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
-    if (window.storage && window.storage.set) {
-      window.storage.set(STORAGE_KEY, JSON.stringify(data), true).catch(() => {});
-    }
-    statusEl.textContent = 'Salvo automaticamente ✓ (' + new Date().toLocaleTimeString('pt-BR') + ')';
-  } catch (e) {
-    statusEl.textContent = 'Alterações salvas temporariamente nesta sessão.';
-  }
-}
-
-async function loadData() {
-  try {
-    let saved = localStorage.getItem(STORAGE_KEY);
-    if (!saved && window.storage && window.storage.get) {
-      const res = await window.storage.get(STORAGE_KEY, true);
-      if (res && res.value) saved = res.value;
-    }
-    if (saved) {
-      applyData(JSON.parse(saved));
-      statusEl.textContent = 'Dados salvos carregados. Clique em qualquer texto para editar.';
+function markUnsaved(isUnsaved) {
+  hasUnsavedChanges = isUnsaved;
+  const saveBtn = document.getElementById('btn-save');
+  if (saveBtn) {
+    if (isUnsaved) {
+      saveBtn.classList.add('unsaved');
+      saveBtn.innerHTML = '💾 Salvar *';
+      statusEl.textContent = 'Alterações pendentes… Salva automaticamente em breve.';
     } else {
-      statusEl.textContent = 'Clique em qualquer texto da folha para editar. Salva automaticamente.';
+      saveBtn.classList.remove('unsaved');
+      saveBtn.innerHTML = '💾 Salvar';
     }
-  } catch (e) {
-    statusEl.textContent = 'Edição pronta.';
   }
-}
-
-function resetData() {
-  if (confirm('Deseja restaurar a escala para o modelo padrão?')) {
-    localStorage.removeItem(STORAGE_KEY);
-    location.reload();
-  }
-}
-
-document.getElementById('app').addEventListener('input', () => {
-  statusEl.textContent = 'Editando…';
-  clearTimeout(saveTimer);
-  saveTimer = setTimeout(() => { saveData(); adaptSections(); }, 600);
-});
-
-let currentFontSize = 8; // pt
-function changeFontSize(delta) {
-  currentFontSize = Math.max(5, Math.min(12, currentFontSize + delta));
-  document.querySelectorAll('.col-list').forEach(el => {
-    el.style.fontSize = currentFontSize + 'pt';
-  });
-  statusEl.textContent = 'Fonte das listas: ' + currentFontSize + 'pt';
-}
-
-// Negrito na seleção atual (funciona dentro de contenteditable)
-function toggleBoldSelection() {
-  document.execCommand('bold', false, null);
-  statusEl.textContent = 'Negrito aplicado na seleção ✓';
-  clearTimeout(saveTimer);
-  saveTimer = setTimeout(saveData, 600);
-}
-
-// Negrito em todos os nomes das listas
-let allBold = false;
-function toggleBoldAll() {
-  allBold = !allBold;
-  document.querySelectorAll('.col-list li').forEach(li => {
-    if (allBold) {
-      li.style.fontWeight = 'bold';
-    } else {
-      li.style.fontWeight = '';
-    }
-  });
-  statusEl.textContent = allBold ? 'Todos em negrito ✓' : 'Negrito removido de todos ✓';
-  clearTimeout(saveTimer);
-  saveTimer = setTimeout(saveData, 600);
-}
-
-// Adapta seções: se tem pouca gente (ou só "–"/"-"), encolhe a seção
-function adaptSections() {
-  document.querySelectorAll('.section').forEach(sec => {
-    const lists = sec.querySelectorAll('.col-list');
-    let maxInCol = 0;
-    lists.forEach(ul => {
-      let colCount = 0;
-      const items = ul.querySelectorAll('li');
-      items.forEach(li => {
-        const txt = li.textContent.trim();
-        if (txt && txt !== '–' && txt !== '-') colCount++;
-      });
-      if (colCount > maxInCol) maxInCol = colCount;
-    });
-    // Se a coluna com mais nomes tem 1 ou menos, compacta a seção
-    if (maxInCol <= 1) {
-      sec.classList.add('section-compact');
-    } else {
-      sec.classList.remove('section-compact');
-    }
-  });
-  // Adapta colunas individuais: 2 colunas só se tiver 5+ nomes
-  adaptColumns();
-}
-
-// Ajusta column-count de cada lista individualmente
-function adaptColumns() {
-  document.querySelectorAll('.col-list').forEach(ul => {
-    let realNames = 0;
-    const items = ul.querySelectorAll('li');
-    items.forEach(li => {
-      const txt = li.textContent.trim();
-      if (txt && txt !== '–' && txt !== '-') realNames++;
-    });
-    // Só usa 2 colunas se tem 5 ou mais nomes reais
-    ul.style.columnCount = realNames >= 5 ? '2' : '1';
-  });
-}
-
-// ===== GERAR IMAGEM (html2canvas) =====
-async function gerarImagem() {
-  statusEl.textContent = 'Gerando imagem…';
-  try {
-    const page = document.getElementById('app');
-    const canvas = await html2canvas(page, {
-      scale: 4,
-      useCORS: true,
-      backgroundColor: '#ffffff',
-      width: page.scrollWidth,
-      height: page.scrollHeight
-    });
-    canvas.toBlob(async (blob) => {
-      // Tenta Web Share API (mobile / navegadores modernos)
-      if (navigator.share && navigator.canShare) {
-        const file = new File([blob], 'escala-de-folga.png', { type: 'image/png' });
-        const shareData = { files: [file], title: 'Escala de Folga', text: 'Escala de Folga - João Henrique Atacadista' };
-        if (navigator.canShare(shareData)) {
-          try {
-            await navigator.share(shareData);
-            statusEl.textContent = 'Imagem compartilhada ✓';
-            return;
-          } catch (e) { /* fallback para download */ }
-        }
-      }
-      // Fallback: download direto
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = 'escala-de-folga.png';
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
-      URL.revokeObjectURL(url);
-      statusEl.textContent = 'Imagem baixada ✓ (envie pelo WhatsApp)';
-    }, 'image/png');
-  } catch (e) {
-    statusEl.textContent = 'Erro ao gerar imagem: ' + e.message;
-  }
-}
-
-// ===== TEXTO FORMATADO PARA WHATSAPP =====
-function gerarTextoWhatsApp() {
-  // Emojis criados via codepoint para evitar problemas de encoding do arquivo
-  var E_LOJA = String.fromCodePoint(0x1F3EA);
-  var E_CLIP = String.fromCodePoint(0x1F4CB);
-  var E_STAR = String.fromCodePoint(0x2B50);
-  var E_CHECK = String.fromCodePoint(0x2705);
-  var E_CAL = String.fromCodePoint(0x1F4C5);
-  var icones = [
-    String.fromCodePoint(0x1F6D2), // carrinho
-    String.fromCodePoint(0x1F4E6), // caixa
-    String.fromCodePoint(0x1F373), // frigideira
-    String.fromCodePoint(0x1FA94), // faca
-    String.fromCodePoint(0x1F35E), // pao
-    String.fromCodePoint(0x1F464), // pessoa
-    String.fromCodePoint(0x1F69A), // caminhao
-    String.fromCodePoint(0x1F9F9), // vassoura
-  ];
-
-  // Pega o nome da empresa e titulo do header
-  var name1 = document.querySelector('[data-key="name1"]');
-  var name2 = document.querySelector('[data-key="name2"]');
-  var tituloEl = document.querySelector('[data-key="title"]');
-  var empresa = (name1 ? name1.textContent.trim() : 'JOAO HENRIQUE') + ' ' + (name2 ? name2.textContent.trim() : 'ATACADISTA');
-  var titulo = tituloEl ? tituloEl.textContent.trim() : 'ESCALA DE FOLGA';
-
-  var txt = '';
-  txt += '================================\n';
-  txt += '     ' + E_LOJA + ' *' + empresa + '*\n';
-  txt += '     ' + E_CLIP + ' *' + titulo + '*\n';
-  txt += '================================\n\n';
-
-  var sections = document.querySelectorAll('.section');
-  for (var i = 0; i < sections.length; i++) {
-    var sec = sections[i];
-    var titleEl = sec.querySelector('.sec-title');
-    // Tratar <br> como espaco
-    var title = 'SECAO ' + (i+1);
-    if (titleEl) {
-      var clone = titleEl.cloneNode(true);
-      var brs = clone.querySelectorAll('br');
-      for (var b = 0; b < brs.length; b++) { brs[b].replaceWith(' '); }
-      title = clone.textContent.trim().replace(/\s+/g, ' ');
-    }
-    var ic = icones[i] || '>>';
-
-    txt += ic + ' *' + title + '*\n';
-    txt += '--------------------------------\n';
-
-    var cols = sec.querySelectorAll('.col');
-    for (var c = 0; c < cols.length; c++) {
-      var col = cols[c];
-      var headEl = col.querySelector('.col-head');
-      var day = headEl ? headEl.textContent.trim() : '';
-      var listEl = col.querySelector('.col-list');
-      var items = listEl ? listEl.querySelectorAll('li') : [];
-      var names = [];
-      for (var n = 0; n < items.length; n++) {
-        var nm = items[n].textContent.trim();
-        if (nm && nm !== '\u2013' && nm !== '-') names.push(nm);
-      }
-      if (names.length > 0) {
-        txt += E_CAL + ' *' + day + ':* ' + names.join(', ') + '\n';
-      } else {
-        txt += E_CAL + ' *' + day + ':* _sem folga_\n';
-      }
-    }
-    txt += '\n';
-  }
-
-  txt += '================================\n';
-  txt += E_STAR + ' *Nossa equipe e o que nos faz mais fortes!*\n';
-  txt += E_CHECK + ' *Organizacao hoje, resultados amanha!*\n';
-  txt += '================================\n';
-
-  // Copiar para clipboard
-  navigator.clipboard.writeText(txt).then(function() {
-    statusEl.textContent = 'Texto copiado! Cole no WhatsApp.';
-  }).catch(function() {
-    var ta = document.createElement('textarea');
-    ta.value = txt;
-    document.body.appendChild(ta);
-    ta.select();
-    document.execCommand('copy');
-    document.body.removeChild(ta);
-    statusEl.textContent = 'Texto copiado! Cole no WhatsApp.';
-  });
-
-  // Abre WhatsApp Web com o texto
-  var encoded = encodeURIComponent(txt);
-  window.open('https://wa.me/?text=' + encoded, '_blank');
 }
 
 // Alternar entre abas
@@ -1032,7 +883,7 @@ function switchTab(tab) {
 function collectData() {
   const data = {};
   document.querySelectorAll('[data-key]').forEach(el => {
-    data[el.getAttribute('data-key')] = el.innerHTML;
+    data[el.dataset.key] = el.innerHTML;
   });
   return data;
 }
@@ -1041,30 +892,47 @@ function applyData(data) {
   if (!data) return;
   Object.keys(data).forEach(key => {
     const el = document.querySelector('[data-key="' + key + '"]');
-    if (el) el.innerHTML = data[key];
+    if (el) {
+      if (el.classList.contains('col-list')) {
+        const temp = document.createElement('div');
+        temp.innerHTML = data[key];
+        const names = [];
+        temp.querySelectorAll('li').forEach(li => {
+          const t = li.textContent.trim();
+          if (t && t !== '–' && t !== '-') names.push(t);
+        });
+        if (names.length > 0) {
+          el.innerHTML = names.map(n => '<li>' + n + '</li>').join('');
+        } else {
+          el.innerHTML = '<li>-</li>';
+        }
+        el.removeAttribute('style');
+      } else {
+        el.innerHTML = data[key];
+      }
+    }
   });
 }
 
-function saveData() {
+function saveData(isManual = false) {
   try {
     const data = collectData();
     localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
-    if (window.storage && window.storage.set) {
-      window.storage.set(STORAGE_KEY, JSON.stringify(data), true).catch(() => {});
+    markUnsaved(false);
+    const timeStr = new Date().toLocaleTimeString('pt-BR');
+    if (isManual) {
+      statusEl.textContent = 'Salvo manualmente com sucesso! ✓ (' + timeStr + ')';
+    } else {
+      statusEl.textContent = 'Salvo automaticamente ✓ (' + timeStr + ')';
     }
-    statusEl.textContent = 'Salvo automaticamente ✓ (' + new Date().toLocaleTimeString('pt-BR') + ')';
   } catch (e) {
     statusEl.textContent = 'Alterações salvas temporariamente nesta sessão.';
   }
 }
 
-async function loadData() {
+function loadData() {
   try {
     let saved = localStorage.getItem(STORAGE_KEY);
-    if (!saved && window.storage && window.storage.get) {
-      const res = await window.storage.get(STORAGE_KEY, true);
-      if (res && res.value) saved = res.value;
-    }
     if (saved) {
       applyData(JSON.parse(saved));
       statusEl.textContent = 'Dados salvos carregados. Clique em qualquer texto para editar.';
@@ -1076,27 +944,63 @@ async function loadData() {
   }
 }
 
-function resetData() {
-  if (confirm('Deseja restaurar a escala para o modelo padrão?')) {
-    localStorage.removeItem(STORAGE_KEY);
-    location.reload();
+// Alerta de fechar/sair da página sem salvar
+window.addEventListener('beforeunload', (e) => {
+  if (hasUnsavedChanges) {
+    e.preventDefault();
+    e.returnValue = 'Você tem alterações na escala que ainda não foram salvas!';
+    return e.returnValue;
+  }
+});
+
+function openModal(title, body, action) {
+  pendingAction = action;
+  document.getElementById('modal-title').textContent = title;
+  document.getElementById('modal-body').textContent = body;
+  document.getElementById('blur-modal').classList.add('active');
+}
+
+function closeModal() {
+  document.getElementById('blur-modal').classList.remove('active');
+  pendingAction = null;
+}
+
+function handleModalAction(type) {
+  if (type === 'save') {
+    saveData(true);
+    closeModal();
+  } else if (type === 'discard') {
+    hasUnsavedChanges = false;
+    closeModal();
+    if (pendingAction === 'reset') {
+      localStorage.removeItem(STORAGE_KEY);
+      location.reload();
+    }
   }
 }
 
+function confirmResetData() {
+  openModal(
+    'Restaurar Escala Padrão',
+    'Tem certeza que deseja apagar todas as edições feitas e restaurar o modelo padrão da loja?',
+    'reset'
+  );
+}
+
 document.getElementById('app').addEventListener('input', () => {
-  statusEl.textContent = 'Editando…';
+  markUnsaved(true);
   clearTimeout(saveTimer);
-  saveTimer = setTimeout(() => { saveData(); adaptSections(); }, 600);
+  saveTimer = setTimeout(() => { saveData(false); adaptSections(); }, 600);
 });
 document.getElementById('app-domingo').addEventListener('input', () => {
-  statusEl.textContent = 'Editando…';
+  markUnsaved(true);
   clearTimeout(saveTimer);
-  saveTimer = setTimeout(() => { saveData(); adaptSections(); }, 600);
+  saveTimer = setTimeout(() => { saveData(false); adaptSections(); }, 600);
 });
 
-let currentFontSize = 8;
+let currentFontSize = 12;
 function changeFontSize(delta) {
-  currentFontSize = Math.max(5, Math.min(12, currentFontSize + delta));
+  currentFontSize = Math.max(5, Math.min(16, currentFontSize + delta));
   document.querySelectorAll('.col-list').forEach(el => {
     el.style.fontSize = currentFontSize + 'pt';
   });
@@ -1126,38 +1030,20 @@ function toggleBoldAll() {
 }
 
 function adaptSections() {
-  document.querySelectorAll('.section').forEach(sec => {
-    const lists = sec.querySelectorAll('.col-list');
-    let maxInCol = 0;
-    lists.forEach(ul => {
-      let colCount = 0;
-      const items = ul.querySelectorAll('li');
-      items.forEach(li => {
-        const txt = li.textContent.trim();
-        if (txt && txt !== '–' && txt !== '-') colCount++;
-      });
-      if (colCount > maxInCol) maxInCol = colCount;
-    });
-    if (maxInCol <= 1) {
-      sec.classList.add('section-compact');
-    } else {
-      sec.classList.remove('section-compact');
-    }
-  });
-  adaptColumns();
-}
-
-function adaptColumns() {
   document.querySelectorAll('.col-list').forEach(ul => {
-    let realNames = 0;
     const items = ul.querySelectorAll('li');
+    let realCount = 0;
     items.forEach(li => {
       const txt = li.textContent.trim();
-      if (txt && txt !== '–' && txt !== '-') realNames++;
+      if (txt && txt !== '–' && txt !== '-') realCount++;
     });
-    ul.style.columnCount = realNames >= 5 ? '2' : '1';
+    if (realCount === 0) {
+      ul.innerHTML = '<li>-</li>';
+    }
   });
 }
+
+function adaptColumns() {}
 
 async function gerarImagem() {
   statusEl.textContent = 'Gerando imagem (Altíssima Qualidade)…';
@@ -1188,7 +1074,7 @@ async function gerarImagem() {
       a.download = 'escala.png';
       document.body.appendChild(a);
       a.click();
-      document.body.removeChild(a);
+      a.remove();
       URL.revokeObjectURL(url);
       statusEl.textContent = 'Imagem baixada ✓ (envie pelo WhatsApp)';
     }, 'image/png');
@@ -1238,7 +1124,7 @@ function gerarTextoWhatsApp() {
     if (titleEl) {
       var clone = titleEl.cloneNode(true);
       var brs = clone.querySelectorAll('br');
-      for (var b = 0; b < brs.length; b++) { brs[b].replaceWith(' '); }
+      for (const element of brs) { element.replaceWith(' '); }
       title = clone.textContent.trim().replace(/\s+/g, ' ');
     }
     var ic = icones[i] || '>>';
@@ -1247,15 +1133,14 @@ function gerarTextoWhatsApp() {
     txt += '--------------------------------\n';
 
     var cols = sec.querySelectorAll('.col');
-    for (var c = 0; c < cols.length; c++) {
-      var col = cols[c];
+    for (const col of cols) {
       var headEl = col.querySelector('.col-head');
       var day = headEl ? headEl.textContent.trim() : '';
       var listEl = col.querySelector('.col-list');
       var items = listEl ? listEl.querySelectorAll('li') : [];
       var names = [];
-      for (var n = 0; n < items.length; n++) {
-        var nm = items[n].textContent.trim();
+      for (const element of items) {
+        var nm = element.textContent.trim();
         if (nm && nm !== '\u2013' && nm !== '-') names.push(nm);
       }
       
@@ -1288,7 +1173,7 @@ function gerarTextoWhatsApp() {
     document.body.appendChild(ta);
     ta.select();
     document.execCommand('copy');
-    document.body.removeChild(ta);
+    ta.remove();
     statusEl.textContent = 'Texto copiado! Cole no WhatsApp.';
   });
 
@@ -1303,11 +1188,28 @@ window.toggleBoldSelection = toggleBoldSelection;
 window.toggleBoldAll = toggleBoldAll;
 window.gerarImagem = gerarImagem;
 window.gerarTextoWhatsApp = gerarTextoWhatsApp;
-window.resetData = resetData;
+window.saveData = saveData;
+window.confirmResetData = confirmResetData;
+window.closeModal = closeModal;
+window.handleModalAction = handleModalAction;
 
 loadData();
 setTimeout(adaptSections, 100);
 </script>
+
+<!-- Modal de Confirmação com Efeito Blur -->
+<div class="modal-overlay" id="blur-modal">
+  <div class="modal-card">
+    <div class="modal-icon" id="modal-icon">⚠️</div>
+    <div class="modal-title" id="modal-title">Alterações Não Salvas</div>
+    <div class="modal-body" id="modal-body">Você possui alterações na escala que ainda não foram salvas. O que deseja fazer?</div>
+    <div class="modal-actions" id="modal-actions">
+      <button class="modal-btn modal-btn-primary" id="modal-btn-save" onclick="handleModalAction('save')">💾 Salvar</button>
+      <button class="modal-btn modal-btn-danger" id="modal-btn-discard" onclick="handleModalAction('discard')">🗑️ Descartar</button>
+      <button class="modal-btn modal-btn-secondary" id="modal-btn-cancel" onclick="closeModal()">Cancelar</button>
+    </div>
+  </div>
+</div>
 
 </body>
 </html>
