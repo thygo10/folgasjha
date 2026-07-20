@@ -16,7 +16,7 @@
   html, body {
     margin: 0;
     padding: 0;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Plus Jakarta Sans', Arial, Helvetica, sans-serif;
     background: #e9edf1;
     -webkit-print-color-adjust: exact !important;
     print-color-adjust: exact !important;
@@ -141,11 +141,12 @@
 
   /* Conteúdo distribuído com altura dinâmica e preenchimento perfeito A4 */
   .content {
-    padding: 3mm 4mm;
+    padding: 2.5mm 4mm;
     flex: 1;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    gap: 1.2mm;
     min-height: 0;
     overflow: hidden;
   }
@@ -166,13 +167,13 @@
     justify-content: flex-start;
     text-align: left;
     color: #fff;
-    padding: 2mm 3.5mm;
+    padding: 1.8mm 3.5mm;
     gap: 3mm;
   }
   .icon-badge {
-    width: 13mm;
-    height: 13mm;
-    min-width: 13mm;
+    width: 12.5mm;
+    height: 12.5mm;
+    min-width: 12.5mm;
     border-radius: 50%;
     background: #ffffff !important;
     display: flex;
@@ -182,8 +183,8 @@
     flex-shrink: 0;
   }
   .icon-badge svg {
-    width: 9mm;
-    height: 9mm;
+    width: 8.5mm;
+    height: 8.5mm;
   }
   .sec-icon .sec-title {
     font-size: 8.5pt;
@@ -214,18 +215,18 @@
   }
   .col-head {
     color: #fff;
-    font-size: 7.5pt;
+    font-size: 8pt;
     font-weight: 800;
     text-align: center;
-    padding: 0.8mm 0;
+    padding: 0.7mm 0;
     letter-spacing: 0.5px;
     flex-shrink: 0;
   }
   .col-list {
     list-style: none;
     margin: 0;
-    padding: 1.5mm 0;
-    font-size: 12pt;
+    padding: 1mm 0;
+    font-size: 11.5pt;
     line-height: 1.35;
     color: #222;
     text-align: center !important;
@@ -239,8 +240,9 @@
     width: 100% !important;
     text-align: center !important;
     white-space: nowrap !important;
-    overflow: visible !important;
-    margin: 0.6mm 0 !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    margin: 0.35mm 0 !important;
   }
 
   /* Edição em tempo real intuitiva */
@@ -293,106 +295,205 @@
     flex-shrink: 0;
   }
 
-  /* Toolbar superior no navegador */
+  /* Toolbar superior no navegador - Visual Web App SaaS */
   .toolbar {
     max-width: 210mm;
-    margin: 4px auto 2px;
-    text-align: center;
-    font-family: Arial, sans-serif;
+    margin: 8px auto 6px;
+    background: #0f172a;
+    border: 1px solid #1e293b;
+    border-radius: 12px;
+    padding: 10px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.25), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    flex-wrap: wrap;
+    color: #f8fafc;
+  }
+  .toolbar-brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .brand-badge {
+    width: 34px;
+    height: 34px;
+    background: linear-gradient(135deg, #0b2a52, #1d4ed8);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #f7c600;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.2);
+  }
+  .brand-title {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.25;
+    text-align: left;
+  }
+  .brand-title .title-main {
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: -0.2px;
+    color: #ffffff;
+  }
+  .brand-title .title-sub {
+    font-size: 10px;
+    color: #94a3b8;
+    font-weight: 500;
+  }
+
+  /* Switcher de abas estilo Segmented Control */
+  .tab-switcher {
+    background: #1e293b;
+    padding: 3px;
+    border-radius: 8px;
+    display: flex;
+    gap: 4px;
+    border: 1px solid #334155;
+  }
+  .toolbar button.btn-tab {
+    background: transparent;
+    color: #94a3b8;
+    border: none;
+    padding: 6px 14px;
+    border-radius: 6px;
+    font-size: 11.5px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    white-space: nowrap;
+  }
+  .toolbar button.btn-tab:hover {
+    color: #f8fafc;
+    background: rgba(255, 255, 255, 0.05);
+  }
+  .toolbar button.btn-tab.active {
+    background: #0b2a52;
+    color: #ffffff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    border: 1px solid #1d4ed8;
+  }
+
+  /* Grupos de botões funcionais */
+  .toolbar-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .action-group {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .toolbar button.btn-action {
+    background: #1e293b;
+    color: #f8fafc;
+    border: 1px solid #334155;
+    padding: 0 12px;
+    height: 32px;
+    border-radius: 6px;
+    font-size: 11.5px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    white-space: nowrap;
+  }
+  .toolbar button.btn-action:hover {
+    background: #334155;
+    border-color: #475569;
+    transform: translateY(-1px);
+  }
+  .toolbar button.btn-primary {
+    background: #2563eb;
+    border-color: #3b82f6;
+    color: #fff;
+  }
+  .toolbar button.btn-primary:hover {
+    background: #1d4ed8;
+    border-color: #2563eb;
+  }
+  .toolbar button.btn-whatsapp {
+    background: #059669;
+    border-color: #10b981;
+    color: #fff;
+  }
+  .toolbar button.btn-whatsapp:hover {
+    background: #047857;
+  }
+  .toolbar button.btn-save {
+    background: #166534;
+    border-color: #22c55e;
+    color: #fff;
+  }
+  .toolbar button.btn-save:hover {
+    background: #15803d;
+  }
+  .toolbar button.btn-save.unsaved {
+    background: #ea580c;
+    border-color: #f97316;
+    animation: pulseSave 1.5s infinite;
+  }
+  .toolbar button.btn-icon {
+    background: #1e293b;
+    color: #cbd5e1;
+    border: 1px solid #334155;
+    width: 32px;
+    height: 32px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .toolbar button.btn-icon:hover {
+    background: #334155;
+    color: #fff;
+  }
+
+  /* Barra de Status estilo Toast / Pill */
+  .status-pill {
+    max-width: 210mm;
+    margin: 0 auto 10px;
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 8px;
-    flex-wrap: wrap;
-    background: #fff;
-    padding: 8px 14px;
-    border-radius: 8px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    font-size: 11px;
+    font-weight: 600;
+    color: #475569;
+    background: #ffffff;
+    padding: 5px 14px;
+    border-radius: 20px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+    border: 1px solid #e2e8f0;
   }
-  .toolbar button {
-    background: #061c37;
-    color: #fff;
-    border: 2px solid #061c37;
-    padding: 0 14px;
-    height: 34px;
-    border-radius: 6px;
-    font-size: 12px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: all 0.2s;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 4px;
-    vertical-align: middle;
-    white-space: nowrap;
+  .pulse-dot {
+    width: 7px;
+    height: 7px;
+    background: #22c55e;
+    border-radius: 50%;
+    box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7);
+    animation: dotPulse 1.8s infinite;
+    flex-shrink: 0;
   }
-  .toolbar button:hover {
-    background: #14427c;
-    border-color: #14427c;
-  }
-  .toolbar button.btn-bold {
-    background: #111;
-    border-color: #111;
-    font-size: 14px;
-    padding: 0 12px;
-  }
-  .toolbar button.btn-bold:hover {
-    background: #444;
-    border-color: #444;
-  }
-  .toolbar button.btn-whatsapp {
-    background: #128c7e;
-    border-color: #128c7e;
-    color: #fff;
-  }
-  .toolbar button.btn-whatsapp:hover {
-    background: #075e54;
-    border-color: #075e54;
-  }
-  .toolbar button.btn-reset {
-    background: #901b20;
-    border-color: #901b20;
-  }
-  .toolbar button.btn-reset:hover {
-    background: #b0242a;
-    border-color: #b0242a;
-  }
-  
-  /* Botões de abas (Tabs) com alto contraste */
-  .toolbar button.btn-tab {
-    background: #f1f3f5;
-    color: #212529;
-    border: 2px solid #adb5bd;
-  }
-  .toolbar button.btn-tab:hover {
-    background: #e2e6ea;
-    border-color: #868e96;
-  }
-  .toolbar button.btn-tab.active {
-    background: #0b2a52;
-    color: #fff;
-    border-color: #0b2a52;
-  }
-
-  .toolbar button.btn-save {
-    background: #2b8a3e;
-    border-color: #2b8a3e;
-    color: #fff;
-  }
-  .toolbar button.btn-save:hover {
-    background: #237032;
-    border-color: #237032;
-  }
-  .toolbar button.btn-save.unsaved {
-    background: #e67e22;
-    border-color: #d35400;
-    animation: pulseSave 1.5s infinite;
-  }
-  @keyframes pulseSave {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.05); }
-    100% { transform: scale(1); }
+  @keyframes dotPulse {
+    0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7); }
+    70% { transform: scale(1); box-shadow: 0 0 0 6px rgba(34, 197, 94, 0); }
+    100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); }
   }
 
   /* Modal de Confirmação com Efeito Blur (Desfoque de Fundo) */
@@ -475,43 +576,100 @@
   .modal-btn-secondary { background: #e2e6ea; color: #333; }
   .modal-btn-secondary:hover { background: #ced4da; }
 
-  /* Ocultar barra de ferramentas e modais na impressão em PDF */
+  /* Ocultar barra de ferramentas e modais na impressão em PDF e forçar tamanho A4 real */
   @media print {
-    .toolbar, .modal-overlay {
-      display: none !important;
-    }
-    body {
+    html, body {
+      width: 210mm !important;
+      height: 297mm !important;
+      margin: 0 !important;
+      padding: 0 !important;
+      overflow: hidden !important;
       background: #fff !important;
     }
+    .toolbar, .modal-overlay, .status-pill {
+      display: none !important;
+    }
     .page {
+      display: none !important;
+    }
+    .page.active {
+      display: flex !important;
+      width: 210mm !important;
+      height: 297mm !important;
+      min-height: 297mm !important;
+      max-height: 297mm !important;
       box-shadow: none !important;
       margin: 0 !important;
-      width: 100% !important;
-      height: 100% !important;
-      max-height: 297mm !important;
-      page-break-after: avoid;
-      page-break-inside: avoid;
+      padding: 0 !important;
+      page-break-after: avoid !important;
+      page-break-inside: avoid !important;
     }
   }
 </style>
+<!-- Google Fonts & Libraries -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 </head>
 <body>
 
-<div class="toolbar">
-  <button class="btn-tab active" id="tab-semana" onclick="switchTab('semana')">📅 Semana (Terça a Sexta)</button>
-  <button class="btn-tab" id="tab-domingo" onclick="switchTab('domingo')">📅 Domingo (19/07)</button>
-  <span style="border-left: 2px solid #ccc; height: 20px; margin: 0 4px;"></span>
-  <button class="btn-save" id="btn-save" onclick="saveData(true)">💾 Salvar</button>
-  <button onclick="window.print()">🖨️ Imprimir PDF</button>
-  <button class="btn-reset" onclick="confirmResetData()">↺ Restaurar</button>
-  <button onclick="changeFontSize(0.5)">🔤+ Fonte</button>
-  <button onclick="changeFontSize(-0.5)">🔤- Fonte</button>
-  <button class="btn-bold" onclick="toggleBoldSelection()"><b>B</b> Seleção</button>
-  <button class="btn-bold" onclick="toggleBoldAll()"><b>B</b> Todos</button>
-  <button class="btn-whatsapp" onclick="gerarImagem()">📸 Gerar Imagem</button>
-  <button class="btn-whatsapp" onclick="gerarTextoWhatsApp()">💬 Texto WhatsApp</button>
-  <span class="status" id="status">Clique em qualquer texto da folha para editar…</span>
+<header class="toolbar">
+  <div class="toolbar-brand">
+    <div class="brand-badge">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M3 9h18M8 2v4M16 2v4"/></svg>
+    </div>
+    <div class="brand-title">
+      <span class="title-main">Escala Pro</span>
+      <span class="title-sub">João Henrique Atacadista</span>
+    </div>
+  </div>
+
+  <div class="tab-switcher">
+    <button class="btn-tab active" id="tab-semana" onclick="switchTab('semana')">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M3 9h18"/></svg>
+      Semana (Terça a Sexta)
+    </button>
+    <button class="btn-tab" id="tab-domingo" onclick="switchTab('domingo')">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+      Domingo (19/07)
+    </button>
+  </div>
+
+  <div class="toolbar-actions">
+    <div class="action-group">
+      <button class="btn-action btn-save" id="btn-save" onclick="saveData(true)" title="Salvar Alterações">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
+        <span>Salvar</span>
+      </button>
+      <button class="btn-action btn-primary" onclick="window.print()" title="Imprimir / Exportar PDF">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+        <span>Exportar PDF</span>
+      </button>
+      <button class="btn-action" onclick="gerarImagem()" title="Baixar Imagem PNG">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+        <span>Imagem</span>
+      </button>
+      <button class="btn-action btn-whatsapp" onclick="gerarTextoWhatsApp()" title="Copiar / Enviar pelo WhatsApp">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-0.999 3.648 3.742-.981z"/></svg>
+        <span>WhatsApp</span>
+      </button>
+    </div>
+
+    <div class="action-group">
+      <button class="btn-icon" onclick="changeFontSize(0.5)" title="Aumentar Fonte">A+</button>
+      <button class="btn-icon" onclick="changeFontSize(-0.5)" title="Diminuir Fonte">A-</button>
+      <button class="btn-icon" onclick="toggleBoldSelection()" title="Negrito no Texto Selecionado"><b>B</b></button>
+      <button class="btn-icon" onclick="confirmResetData()" title="Restaurar Padrão">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="status-pill">
+  <span class="pulse-dot"></span>
+  <span class="status-text" id="status">Clique em qualquer texto da folha para editar…</span>
 </div>
 
 <div class="page active" id="app">
@@ -785,7 +943,7 @@
       <div class="sec-body">
         <div class="col"><div class="col-head" contenteditable="true" data-key="dom-s4-h1">08:00 ÀS 16:00<br>(30 MIN INT)</div>
           <ul class="col-list" contenteditable="true" data-key="dom-s4-l1"><li>Gabriel</li><li>Ana</li></ul></div>
-        <div class="col"><div class="col-head" contenteditable="true" data-key="dom-s4-h2">09:00 ÀS 18:00<br>(1H30 INT)</div>
+        <div class="col"><div class="col-head" contenteditable="true" data-key="dom-s4-h2">09:00 ÀS 18:00<br>(1H30 ALMOÇO)</div>
           <ul class="col-list" contenteditable="true" data-key="dom-s4-l2"><li>Erick</li><li>Rafael</li></ul></div>
         <div class="col"><div class="col-head" contenteditable="true" data-key="dom-s4-h3">12:00 ÀS 20:00<br>(30 MIN INT)</div>
           <ul class="col-list" contenteditable="true" data-key="dom-s4-l3"><li>Roberto</li><li>Marcelo</li></ul></div>
@@ -861,7 +1019,7 @@
 </div>
 
 <script>
-const STORAGE_KEY = 'escala-folga-jha-v11';
+const STORAGE_KEY = 'escala-folga-jha-v12';
 const statusEl = document.getElementById('status');
 let saveTimer = null;
 let hasUnsavedChanges = false;
@@ -913,6 +1071,9 @@ function collectData() {
 function applyData(data) {
   if (!data) return;
   Object.keys(data).forEach(key => {
+    if (typeof data[key] === 'string') {
+      data[key] = data[key].replaceAll('1H30 INT', '1H30 ALMOÇO');
+    }
     const el = document.querySelector('[data-key="' + key + '"]');
     if (el) {
       if (el.classList.contains('col-list')) {
@@ -1022,11 +1183,32 @@ document.getElementById('app-domingo').addEventListener('input', () => {
 
 let currentFontSize = 12;
 function changeFontSize(delta) {
-  currentFontSize = Math.max(5, Math.min(16, currentFontSize + delta));
+  const targetSize = Math.max(7, Math.min(14, currentFontSize + delta));
+  if (targetSize === currentFontSize) return;
+
+  // Aplica temporariamente o novo tamanho de fonte
   document.querySelectorAll('.col-list').forEach(el => {
-    el.style.fontSize = currentFontSize + 'pt';
+    el.style.fontSize = targetSize + 'pt';
   });
-  statusEl.textContent = 'Fonte das listas: ' + currentFontSize + 'pt';
+
+  // Checa se algum nome ultrapassou a largura limite da coluna
+  let overflowedName = null;
+  document.querySelectorAll('.col-list li').forEach(li => {
+    if (li.scrollWidth > li.clientWidth + 1) {
+      overflowedName = li.textContent.trim();
+    }
+  });
+
+  // Se aumentou a fonte e algum nome ultrapassou o limite, trava no tamanho seguro anterior
+  if (delta > 0 && overflowedName) {
+    document.querySelectorAll('.col-list').forEach(el => {
+      el.style.fontSize = currentFontSize + 'pt';
+    });
+    statusEl.textContent = '⚠️ Limite atingido! Aumentar mais cortaria o nome "' + overflowedName + '".';
+  } else {
+    currentFontSize = targetSize;
+    statusEl.textContent = 'Fonte das listas: ' + currentFontSize + 'pt ✓';
+  }
 }
 
 function toggleBoldSelection() {
@@ -1066,40 +1248,55 @@ function adaptSections() {
 }
 
 async function gerarImagem() {
-  statusEl.textContent = 'Gerando imagem (Altíssima Qualidade)…';
+  statusEl.textContent = 'Gerando imagem de alta resolução…';
   try {
     const page = document.querySelector('.page.active');
+    const isDomingo = page.id === 'app-domingo';
+    const fileName = isDomingo ? 'escala-domingo.png' : 'escala-semana.png';
+
     const canvas = await html2canvas(page, {
-      scale: 6,
+      scale: 5,
       useCORS: true,
       backgroundColor: '#ffffff',
       width: page.scrollWidth,
       height: page.scrollHeight
     });
-    canvas.toBlob(async (blob) => {
-      if (navigator.share && navigator.canShare) {
-        const file = new File([blob], 'escala.png', { type: 'image/png' });
-        const shareData = { files: [file], title: 'Escala', text: 'Escala de Trabalho' };
-        if (navigator.canShare(shareData)) {
-          try {
-            await navigator.share(shareData);
-            statusEl.textContent = 'Imagem compartilhada ✓';
-            return;
-          } catch (e) { }
-        }
-      }
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = 'escala.png';
-      document.body.appendChild(a);
-      a.click();
-      a.remove();
-      URL.revokeObjectURL(url);
-      statusEl.textContent = 'Imagem baixada ✓ (envie pelo WhatsApp)';
-    }, 'image/png');
+
+    const imgDataUrl = canvas.toDataURL('image/png');
+
+    // Atualiza modal de pré-visualização da imagem
+    const downloadBtn = document.getElementById('btn-download-img');
+    if (downloadBtn) {
+      downloadBtn.href = imgDataUrl;
+      downloadBtn.download = fileName;
+    }
+    const previewImg = document.getElementById('img-preview-src');
+    if (previewImg) {
+      previewImg.src = imgDataUrl;
+    }
+    const imgModal = document.getElementById('img-modal-overlay');
+    if (imgModal) {
+      imgModal.classList.add('active');
+    }
+
+    // Dispara o download automático do arquivo no navegador
+    const a = document.createElement('a');
+    a.href = imgDataUrl;
+    a.download = fileName;
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+
+    statusEl.textContent = 'Imagem gerada e baixada com sucesso! ✓ (' + fileName + ')';
   } catch (e) {
     statusEl.textContent = 'Erro ao gerar imagem: ' + e.message;
+  }
+}
+
+function closeImgModal() {
+  const imgModal = document.getElementById('img-modal-overlay');
+  if (imgModal) {
+    imgModal.classList.remove('active');
   }
 }
 
@@ -1207,6 +1404,7 @@ window.changeFontSize = changeFontSize;
 window.toggleBoldSelection = toggleBoldSelection;
 window.toggleBoldAll = toggleBoldAll;
 window.gerarImagem = gerarImagem;
+window.closeImgModal = closeImgModal;
 window.gerarTextoWhatsApp = gerarTextoWhatsApp;
 window.saveData = saveData;
 window.confirmResetData = confirmResetData;
@@ -1227,6 +1425,21 @@ setTimeout(adaptSections, 100);
       <button class="modal-btn modal-btn-primary" id="modal-btn-save" onclick="handleModalAction('save')">💾 Salvar</button>
       <button class="modal-btn modal-btn-danger" id="modal-btn-discard" onclick="handleModalAction('discard')">🗑️ Descartar</button>
       <button class="modal-btn modal-btn-secondary" id="modal-btn-cancel" onclick="closeModal()">Cancelar</button>
+    </div>
+  </div>
+</div>
+
+<!-- Modal de Pré-visualização e Download da Imagem -->
+<div class="modal-overlay" id="img-modal-overlay">
+  <div class="modal-card" style="max-width: 520px;">
+    <div class="modal-icon">🖼️</div>
+    <div class="modal-title">Imagem Gerada com Sucesso</div>
+    <div style="max-height: 50vh; overflow-y: auto; border: 1px solid #e2e8f0; border-radius: 8px; margin: 12px 0 18px; background: #f8fafc; padding: 6px;">
+      <img id="img-preview-src" src="" style="width: 100%; height: auto; display: block; border-radius: 6px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);" alt="Preview da Escala">
+    </div>
+    <div class="modal-actions">
+      <a id="btn-download-img" download="escala.png" class="modal-btn modal-btn-primary" style="text-decoration: none;">📥 Baixar Imagem (PNG)</a>
+      <button class="modal-btn modal-btn-secondary" onclick="closeImgModal()">Fechar</button>
     </div>
   </div>
 </div>
