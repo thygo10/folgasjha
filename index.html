@@ -2,6 +2,7 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Escala de Folga - João Henrique Atacadista</title>
 <style>
   @page {
@@ -638,29 +639,41 @@
 
   <div class="toolbar-actions">
     <div class="action-group">
-      <button class="btn-action btn-save" id="btn-save" onclick="saveData(true)" title="Salvar Alterações">
+      <button type="button" class="btn-action btn-save" id="btn-save" onclick="saveData(true)" title="Salvar Alterações" aria-label="Salvar Alterações">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
         <span>Salvar</span>
       </button>
-      <button class="btn-action btn-primary" onclick="window.print()" title="Imprimir / Exportar PDF">
+      <button type="button" class="btn-action btn-primary" onclick="window.print()" title="Imprimir / Exportar PDF" aria-label="Imprimir ou Exportar PDF">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
         <span>Exportar PDF</span>
       </button>
-      <button class="btn-action" onclick="gerarImagem()" title="Baixar Imagem PNG">
+      <button type="button" class="btn-action" onclick="gerarImagem()" title="Baixar Imagem PNG" aria-label="Gerar e Baixar Imagem PNG">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
         <span>Imagem</span>
       </button>
-      <button class="btn-action btn-whatsapp" onclick="gerarTextoWhatsApp()" title="Copiar / Enviar pelo WhatsApp" style="display: none;">
+      <button type="button" class="btn-action btn-whatsapp" onclick="gerarTextoWhatsApp()" title="Copiar / Enviar pelo WhatsApp" aria-label="Copiar ou Enviar pelo WhatsApp" style="display: none;">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-0.999 3.648 3.742-.981z"/></svg>
         <span>WhatsApp</span>
       </button>
     </div>
 
     <div class="action-group">
-      <button class="btn-icon" onclick="changeFontSize(0.5)" title="Aumentar Fonte">A+</button>
-      <button class="btn-icon" onclick="changeFontSize(-0.5)" title="Diminuir Fonte">A-</button>
-      <button class="btn-icon" onclick="toggleBoldSelection()" title="Negrito no Texto Selecionado"><b>B</b></button>
-      <button class="btn-icon" onclick="confirmResetData()" title="Restaurar Padrão">
+      <button type="button" class="btn-action" onclick="exportBackupJSON()" title="Exportar Arquivo de Backup (JSON)" aria-label="Exportar Backup JSON">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        <span>Exportar JSON</span>
+      </button>
+      <button type="button" class="btn-action" onclick="document.getElementById('import-file').click()" title="Importar Arquivo de Backup (JSON)" aria-label="Importar Backup JSON">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+        <span>Importar JSON</span>
+      </button>
+      <input type="file" id="import-file" accept=".json" style="display:none" onchange="importBackupJSON(event)">
+    </div>
+
+    <div class="action-group">
+      <button type="button" class="btn-icon" onclick="changeFontSize(0.5)" title="Aumentar Fonte" aria-label="Aumentar Fonte">A+</button>
+      <button type="button" class="btn-icon" onclick="changeFontSize(-0.5)" title="Diminuir Fonte" aria-label="Diminuir Fonte">A-</button>
+      <button type="button" class="btn-icon" onclick="toggleBoldSelection()" title="Negrito no Texto Selecionado" aria-label="Negrito"><b>B</b></button>
+      <button type="button" class="btn-icon" onclick="confirmResetData()" title="Restaurar Padrão" aria-label="Restaurar Modelo Padrão">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>
       </button>
     </div>
@@ -670,6 +683,7 @@
 <div class="status-pill">
   <span class="pulse-dot"></span>
   <span class="status-text" id="status">Clique em qualquer texto da folha para editar…</span>
+  <span id="overflow-notice" style="display: none; background: #ffe4e6; color: #c1272d; padding: 2px 8px; border-radius: 12px; font-weight: 800; border: 1px solid #f43f5e; font-size: 10px;">⚠️ A4 ESTOURADO</span>
 </div>
 
 <div class="page active" id="app">
@@ -1025,6 +1039,16 @@ let saveTimer = null;
 let hasUnsavedChanges = false;
 let pendingAction = null;
 
+function escapeText(str) {
+  if (typeof str !== 'string') return '';
+  return str
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
+}
+
 function markUnsaved(isUnsaved) {
   hasUnsavedChanges = isUnsaved;
   const saveBtn = document.getElementById('btn-save');
@@ -1042,11 +1066,9 @@ function markUnsaved(isUnsaved) {
 
 // Alternar entre abas
 function switchTab(tab) {
-  // Remove classes ativas
   document.querySelectorAll('.btn-tab').forEach(b => b.classList.remove('active'));
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
 
-  // Ativa a aba e página selecionadas
   if (tab === 'semana') {
     document.getElementById('tab-semana').classList.add('active');
     document.getElementById('app').classList.add('active');
@@ -1055,15 +1077,24 @@ function switchTab(tab) {
     document.getElementById('app-domingo').classList.add('active');
   }
   
-  // Atualiza as seções e colunas da aba ativa
   adaptSections();
+  checkA4Overflow();
   statusEl.textContent = 'Visualizando escala de ' + (tab === 'semana' ? 'Semana' : 'Domingo') + '.';
 }
 
 function collectData() {
   const data = {};
   document.querySelectorAll('[data-key]').forEach(el => {
-    data[el.dataset.key] = el.innerHTML;
+    if (el.classList.contains('col-list')) {
+      const items = [];
+      el.querySelectorAll('li').forEach(li => {
+        const t = li.textContent.trim();
+        if (t && t !== '–' && t !== '-') items.push(t);
+      });
+      data[el.dataset.key] = items;
+    } else {
+      data[el.dataset.key] = el.textContent.trim();
+    }
   });
   return data;
 }
@@ -1071,30 +1102,55 @@ function collectData() {
 function applyData(data) {
   if (!data) return;
   Object.keys(data).forEach(key => {
-    if (typeof data[key] === 'string') {
-      data[key] = data[key].replaceAll('1H30 INT', '1H30 ALMOÇO');
-    }
     const el = document.querySelector('[data-key="' + key + '"]');
-    if (el) {
-      if (el.classList.contains('col-list')) {
+    if (!el) return;
+    const val = data[key];
+
+    if (el.classList.contains('col-list')) {
+      let names = [];
+      if (Array.isArray(val)) {
+        names = val.filter(n => n && n !== '–' && n !== '-');
+      } else if (typeof val === 'string') {
         const temp = document.createElement('div');
-        temp.innerHTML = data[key];
-        const names = [];
+        temp.innerHTML = val;
         temp.querySelectorAll('li').forEach(li => {
           const t = li.textContent.trim();
           if (t && t !== '–' && t !== '-') names.push(t);
         });
-        if (names.length > 0) {
-          el.innerHTML = names.map(n => '<li>' + n + '</li>').join('');
-        } else {
-          el.innerHTML = '<li>-</li>';
+        if (names.length === 0 && val.trim()) {
+          names = val.split('\n').map(n => n.trim()).filter(Boolean);
         }
-        el.removeAttribute('style');
-      } else {
-        el.innerHTML = data[key];
       }
+
+      if (names.length > 0) {
+        el.innerHTML = names.map(n => '<li>' + escapeText(n) + '</li>').join('');
+      } else {
+        el.innerHTML = '<li>-</li>';
+      }
+      el.removeAttribute('style');
+    } else {
+      let textVal = typeof val === 'string' ? val : String(val);
+      textVal = textVal.replaceAll('1H30 INT', '1H30 ALMOÇO');
+      const temp = document.createElement('div');
+      temp.innerHTML = textVal;
+      el.textContent = temp.textContent || textVal;
     }
   });
+}
+
+function checkA4Overflow() {
+  const activePage = document.querySelector('.page.active');
+  const overflowNotice = document.getElementById('overflow-notice');
+  if (!activePage) return false;
+
+  const isOverflowing = activePage.scrollHeight > activePage.clientHeight + 2;
+  if (isOverflowing) {
+    if (overflowNotice) overflowNotice.style.display = 'inline-flex';
+    statusEl.innerHTML = '⚠️ <strong style="color: #c1272d;">ALERTA DE IMPRESSÃO:</strong> O conteúdo excedeu a folha A4 e será cortado!';
+  } else {
+    if (overflowNotice) overflowNotice.style.display = 'none';
+  }
+  return isOverflowing;
 }
 
 function saveData(isManual = false) {
@@ -1108,6 +1164,7 @@ function saveData(isManual = false) {
     } else {
       statusEl.textContent = 'Salvo automaticamente ✓ (' + timeStr + ')';
     }
+    checkA4Overflow();
   } catch (e) {
     statusEl.textContent = 'Alterações salvas temporariamente nesta sessão.';
   }
@@ -1118,7 +1175,7 @@ function loadData() {
     let saved = localStorage.getItem(STORAGE_KEY);
     if (saved) {
       applyData(JSON.parse(saved));
-      statusEl.textContent = 'Dados salvos carregados. Clique em qualquer texto para editar.';
+      statusEl.textContent = 'Dados salvos carregados com segurança. Clique em qualquer texto para editar.';
     } else {
       statusEl.textContent = 'Clique em qualquer texto da folha para editar. Salva automaticamente.';
     }
@@ -1126,6 +1183,90 @@ function loadData() {
     statusEl.textContent = 'Edição pronta.';
   }
 }
+
+function exportBackupJSON() {
+  try {
+    const data = collectData();
+    const jsonStr = JSON.stringify(data, null, 2);
+    const blob = new Blob([jsonStr], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    const activePage = document.querySelector('.page.active');
+    const isDom = activePage && activePage.id === 'app-domingo';
+    a.href = url;
+    a.download = isDom ? 'backup-escala-domingo.json' : 'backup-escala-semana.json';
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    URL.revokeObjectURL(url);
+    statusEl.textContent = 'Backup JSON exportado com sucesso! ✓';
+  } catch (e) {
+    statusEl.textContent = 'Erro ao exportar backup: ' + e.message;
+  }
+}
+
+function importBackupJSON(event) {
+  const file = event.target.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = function(e) {
+    try {
+      const data = JSON.parse(e.target.result);
+      if (typeof data !== 'object' || data === null) throw new Error('Formato de arquivo inválido.');
+      applyData(data);
+      saveData(true);
+      adaptSections();
+      checkA4Overflow();
+      statusEl.textContent = 'Backup restaurado com sucesso! ✓';
+    } catch (err) {
+      alert('Erro ao importar backup: ' + err.message);
+    }
+  };
+  reader.readAsText(file);
+  event.target.value = '';
+}
+
+// Filtro universal para colagem de texto limpo (impede XSS e quebra de layout por HTML externo)
+document.addEventListener('paste', function(e) {
+  const target = e.target.closest('[contenteditable="true"]');
+  if (!target) return;
+
+  e.preventDefault();
+  const text = (e.clipboardData || window.clipboardData).getData('text/plain');
+  if (!text) return;
+
+  if (target.classList.contains('col-list')) {
+    const lines = text.split(/\r?\n/).map(l => l.trim()).filter(Boolean);
+    if (lines.length > 0) {
+      const currentItems = target.querySelectorAll('li');
+      if (currentItems.length === 1 && (currentItems[0].textContent.trim() === '-' || currentItems[0].textContent.trim() === '–')) {
+        target.innerHTML = '';
+      }
+      lines.forEach(line => {
+        const li = document.createElement('li');
+        li.textContent = line;
+        target.appendChild(li);
+      });
+    }
+  } else {
+    const sel = window.getSelection();
+    if (sel.rangeCount) {
+      const range = sel.getRangeAt(0);
+      range.deleteContents();
+      const textNode = document.createTextNode(text);
+      range.insertNode(textNode);
+      range.setStartAfter(textNode);
+      range.setEndAfter(textNode);
+      sel.removeAllRanges();
+      sel.addRange(range);
+    } else {
+      target.textContent += text;
+    }
+  }
+  markUnsaved(true);
+  clearTimeout(saveTimer);
+  saveTimer = setTimeout(() => { saveData(false); adaptSections(); checkA4Overflow(); }, 600);
+});
 
 // Alerta de fechar/sair da página sem salvar
 window.addEventListener('beforeunload', (e) => {
@@ -1173,12 +1314,12 @@ function confirmResetData() {
 document.getElementById('app').addEventListener('input', () => {
   markUnsaved(true);
   clearTimeout(saveTimer);
-  saveTimer = setTimeout(() => { saveData(false); adaptSections(); }, 600);
+  saveTimer = setTimeout(() => { saveData(false); adaptSections(); checkA4Overflow(); }, 600);
 });
 document.getElementById('app-domingo').addEventListener('input', () => {
   markUnsaved(true);
   clearTimeout(saveTimer);
-  saveTimer = setTimeout(() => { saveData(false); adaptSections(); }, 600);
+  saveTimer = setTimeout(() => { saveData(false); adaptSections(); checkA4Overflow(); }, 600);
 });
 
 let currentFontSize = 12;
@@ -1186,12 +1327,10 @@ function changeFontSize(delta) {
   const targetSize = Math.max(7, Math.min(14, currentFontSize + delta));
   if (targetSize === currentFontSize) return;
 
-  // Aplica temporariamente o novo tamanho de fonte
   document.querySelectorAll('.col-list').forEach(el => {
     el.style.fontSize = targetSize + 'pt';
   });
 
-  // Checa se algum nome ultrapassou a largura limite da coluna
   let overflowedName = null;
   document.querySelectorAll('.col-list li').forEach(li => {
     if (li.scrollWidth > li.clientWidth + 1) {
@@ -1199,7 +1338,6 @@ function changeFontSize(delta) {
     }
   });
 
-  // Se aumentou a fonte e algum nome ultrapassou o limite, trava no tamanho seguro anterior
   if (delta > 0 && overflowedName) {
     document.querySelectorAll('.col-list').forEach(el => {
       el.style.fontSize = currentFontSize + 'pt';
@@ -1209,13 +1347,14 @@ function changeFontSize(delta) {
     currentFontSize = targetSize;
     statusEl.textContent = 'Fonte das listas: ' + currentFontSize + 'pt ✓';
   }
+  checkA4Overflow();
 }
 
 function toggleBoldSelection() {
   document.execCommand('bold', false, null);
   statusEl.textContent = 'Negrito aplicado na seleção ✓';
   clearTimeout(saveTimer);
-  saveTimer = setTimeout(saveData, 600);
+  saveTimer = setTimeout(() => { saveData(); checkA4Overflow(); }, 600);
 }
 
 let allBold = false;
@@ -1230,7 +1369,7 @@ function toggleBoldAll() {
   });
   statusEl.textContent = allBold ? 'Todos em negrito ✓' : 'Negrito removido de todos ✓';
   clearTimeout(saveTimer);
-  saveTimer = setTimeout(saveData, 600);
+  saveTimer = setTimeout(() => { saveData(); checkA4Overflow(); }, 600);
 }
 
 function adaptSections() {
@@ -1248,14 +1387,14 @@ function adaptSections() {
 }
 
 async function gerarImagem() {
-  statusEl.textContent = 'Gerando imagem de alta resolução…';
+  statusEl.textContent = 'Gerando imagem em alta resolução…';
   try {
     const page = document.querySelector('.page.active');
     const isDomingo = page.id === 'app-domingo';
     const fileName = isDomingo ? 'escala-domingo.png' : 'escala-semana.png';
 
     const canvas = await html2canvas(page, {
-      scale: 5,
+      scale: 2.5,
       useCORS: true,
       backgroundColor: '#ffffff',
       width: page.scrollWidth,
@@ -1264,7 +1403,6 @@ async function gerarImagem() {
 
     const imgDataUrl = canvas.toDataURL('image/png');
 
-    // Atualiza modal de pré-visualização da imagem
     const downloadBtn = document.getElementById('btn-download-img');
     if (downloadBtn) {
       downloadBtn.href = imgDataUrl;
@@ -1279,7 +1417,6 @@ async function gerarImagem() {
       imgModal.classList.add('active');
     }
 
-    // Dispara o download automático do arquivo no navegador
     const a = document.createElement('a');
     a.href = imgDataUrl;
     a.download = fileName;
@@ -1301,21 +1438,20 @@ function closeImgModal() {
 }
 
 function gerarTextoWhatsApp() {
-  // Emojis via codepoint (evita problema de encoding do arquivo)
-  var E_LOJA = String.fromCodePoint(0x1F3E2); // 🏢 Prédio Escritório
-  var E_CLIP = String.fromCodePoint(0x1F4CB); // 📋 Clipboard
-  var E_STAR = String.fromCodePoint(0x2B50);  // ⭐ Estrela
-  var E_CHECK = String.fromCodePoint(0x2705); // ✅ Check verde
-  var E_CAL = String.fromCodePoint(0x1F4C5);  // 📅 Calendário
+  var E_LOJA = String.fromCodePoint(0x1F3E2);
+  var E_CLIP = String.fromCodePoint(0x1F4CB);
+  var E_STAR = String.fromCodePoint(0x2B50);
+  var E_CHECK = String.fromCodePoint(0x2705);
+  var E_CAL = String.fromCodePoint(0x1F4C5);
   var icones = [
-    String.fromCodePoint(0x1F4B3), // 💳 1. Op. de Caixa
-    String.fromCodePoint(0x1F4E6), // 📦 2. Repositores
-    String.fromCodePoint(0x2615),  // ☕ 3. Lanchonete
-    String.fromCodePoint(0x1F356), // 🍖 4. Açougue
-    String.fromCodePoint(0x1F35E), // 🍞 5. Padaria
-    String.fromCodePoint(0x1F454), // 👔 6. Fiscal
-    String.fromCodePoint(0x1F527), // 🔧 7. Empilhadeira
-    String.fromCodePoint(0x2728),  // ✨ 8. Higienização
+    String.fromCodePoint(0x1F4B3),
+    String.fromCodePoint(0x1F4E6),
+    String.fromCodePoint(0x2615),
+    String.fromCodePoint(0x1F356),
+    String.fromCodePoint(0x1F35E),
+    String.fromCodePoint(0x1F454),
+    String.fromCodePoint(0x1F527),
+    String.fromCodePoint(0x2728),
   ];
 
   var activePage = document.querySelector('.page.active');
@@ -1399,7 +1535,6 @@ function gerarTextoWhatsApp() {
   window.open('https://api.whatsapp.com/send?text=' + encoded, '_blank');
 }
 
-// Vincula funções ao escopo global (window) de forma explícita para compatibilidade
 window.switchTab = switchTab;
 window.changeFontSize = changeFontSize;
 window.toggleBoldSelection = toggleBoldSelection;
@@ -1408,12 +1543,14 @@ window.gerarImagem = gerarImagem;
 window.closeImgModal = closeImgModal;
 window.gerarTextoWhatsApp = gerarTextoWhatsApp;
 window.saveData = saveData;
+window.exportBackupJSON = exportBackupJSON;
+window.importBackupJSON = importBackupJSON;
 window.confirmResetData = confirmResetData;
 window.closeModal = closeModal;
 window.handleModalAction = handleModalAction;
 
 loadData();
-setTimeout(adaptSections, 100);
+setTimeout(() => { adaptSections(); checkA4Overflow(); }, 100);
 </script>
 
 <!-- Modal de Confirmação com Efeito Blur -->
